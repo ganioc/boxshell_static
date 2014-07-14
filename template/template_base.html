@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang={{language }}>
+  <head>
+    <title>{{ title }}</title>
+    {% block head-meta %} {% endblock %}
+    {% block head-link %}{% endblock %}
+    {% block head %}{% endblock %}
+  </head>
+  <body class="home">
+    {% block navbar %}{% endblock %}
+    {% block body %}{% endblock %}
+    <!-- end of body -->
+
+    {% block footer %}{% endblock %}
+    {% block script %}{% endblock %}
+  </body>
+</html>
+
+	

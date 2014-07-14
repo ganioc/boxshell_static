@@ -1,0 +1,309 @@
+*{ margin:0;padding:0;}
+html{
+    font-size:1em;
+}
+body {
+    font-size: 1em;
+    font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+    overflow: hidden;
+}
+
+
+/* main components begin ...*/
+#wrapper{
+    width:100%;
+    height:100%;
+    background:#FFFFFF;
+}
+
+header{
+    background:linear-gradient(45deg,white,#476DD5);
+    color:#2B4281;
+    padding:2px 5px 2px 5px;
+    font-size:150%;
+    font-weight:bold;
+    /*background:linear-gradient(45deg,white,gray);*/
+}
+#file_name{
+    font-size:60%;
+    font-weight:lighter;
+    color:#6D89D5;
+    display:inline;
+    margin-left:4em;
+}
+nav{
+
+}
+
+nav ul {
+    background: #B3F36D;/*efefef; */
+    background: linear-gradient(white , #6D89D5 );  
+    background: -moz-linear-gradient(white  , #6D89D5); 
+    background: -webkit-linear-gradient(white ,#6D89D5 ); 
+    /*box-shadow: 0px 0px 9px rgba(0,0,0,0.15);*/
+    padding: 0 10px;
+    border-radius: 0px;  
+    list-style: none;
+    position: relative;
+    display: block; /*inline-table;*/
+    z-index:100;
+}
+nav ul ul {
+    display:none;
+}
+
+nav ul li:hover > ul {
+    display:block;
+}
+nav ul li a.has-children:after{
+    content:" >";
+}
+nav ul:after {
+    content: ""; 
+    clear: both; 
+    display: block;
+}
+
+nav ul li {
+    float: left;
+}
+nva ul li ul li.has-children:after{
+    content:" >";
+}
+nav ul li:hover {
+    background: #062270;/*B3F36D4b545f;*/
+}
+nav ul li:hover a {
+    color: #fff;
+}
+
+nav ul li a {
+    display: block; 
+    padding: 2px 20px;
+    color: #062270; 
+    text-decoration: none;
+}
+
+nav ul ul {
+    background: #6D89D5; 
+    border-radius: 0px; 
+    padding: 0;
+    position: absolute; 
+    top: 100%;
+}
+nav ul ul li {
+    float: none; 
+    border-top: 1px solid #6b727c;
+    border-bottom: 1px solid #575f6a; 
+    position: relative;
+}
+nav ul ul li a {
+    padding: 5px 20px;
+    color: #fff;
+}	
+nav ul ul li a:hover {
+    background: #062270;/*2B4281;*/
+}
+
+nav ul ul ul {
+    position: absolute; 
+    left: 100%; 
+    top:0;
+}
+
+/***********************************************/
+#button_panel{
+    background:linear-gradient(#6D89D5,#133CAC);
+    padding:5px 40px 5px 40px;
+    text-align:center;
+    border:none;
+    border-radius:0;
+    font-size:0.6em;
+    font-weight:bold;
+}
+#button_panel button{
+}
+#work_area{
+    /*border:1px solid red;*/
+}
+#mycanvas{
+    background:black;
+    display:block;
+}
+footer{
+    /*background:yellow; */
+    /*padding:5px 5px 5px 5px;*/
+    color:#062270;
+    background:repeating-linear-gradient(to right,white,#6D89D5 ,white );
+    padding-left:10px;
+    padding-right:10px;
+    font-size:1em;
+}
+
+footer span{
+    padding-left:1em;
+}
+
+
+.ui-button .ui-icon.ui-icon-zoom-in { 
+    background-image: url(/static/images/teapot/icon_button/zoom_in.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-zoom-out { 
+    background-image: url(/static/images/teapot/icon_button/zoom_out.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-zoom-fit { 
+    background-image: url(/static/images/teapot/icon_button/zoom_fit.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-add-page { 
+    background-image: url(/static/images/teapot/icon_button/page_add.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-delete-page { 
+    background-image: url(/static/images/teapot/icon_button/page_delete.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-refresh-page { 
+    background-image: url(/static/images/teapot/icon_button/page_refresh.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-prev-page { 
+    background-image: url(/static/images/teapot/icon_button/application_side_contract.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-next-page { 
+    background-image: url(/static/images/teapot/icon_button/application_side_expand.png); 
+    background-position:1px 1px;
+}
+
+.ui-button .ui-icon.ui-icon-standard-pwr { 
+    background-image: url(/static/images/teapot/icon_button/power_source.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-standard-pwr-checked { 
+    background-image: url(/static/images/teapot/icon_button/power_source_checked.png); 
+    background-position:1px 1px;
+}
+
+.ui-button .ui-icon.ui-icon-standard-gnd { 
+    background-image: url(/static/images/teapot/icon_button/gnd.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-standard-gnd-checked { 
+    background-image: url(/static/images/teapot/icon_button/gnd_checked.png); 
+    background-position:1px 1px;
+}
+
+.ui-button .ui-icon.ui-icon-standard-wire { 
+    background-image: url(/static/images/teapot/icon_button/wire.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-standard-wire-checked { 
+    background-image: url(/static/images/teapot/icon_button/wire_checked.png); 
+    background-position:1px 1px;
+}
+
+.ui-button .ui-icon.ui-icon-standard-offpage { 
+    background-image: url(/static/images/teapot/icon_button/tag_blue.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-standard-offpage-checked { 
+    background-image: url(/static/images/teapot/icon_button/tag_blue_checked.png); 
+    background-position:1px 1px;
+}
+
+.ui-button .ui-icon.ui-icon-standard-resistor { 
+    background-image: url(/static/images/teapot/icon_button/resistor.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-standard-resistor-checked { 
+    background-image: url(/static/images/teapot/icon_button/resistor_checked.png); 
+    background-position:1px 1px;
+}
+
+.ui-button .ui-icon.ui-icon-standard-capacitor { 
+    background-image: url(/static/images/teapot/icon_button/capacitor.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-standard-capacitor-checked { 
+    background-image: url(/static/images/teapot/icon_button/capacitor_checked.png); 
+    background-position:1px 1px;
+}
+
+.ui-button .ui-icon.ui-icon-standard-inductor { 
+    background-image: url(/static/images/teapot/icon_button/inductor.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-standard-inductor-checked { 
+    background-image: url(/static/images/teapot/icon_button/inductor_checked.png); 
+    background-position:1px 1px;
+}
+/* component editor  */
+.ui-button .ui-icon.ui-icon-component-move { 
+    background-image: url(/static/images/teapot/icon_button/component_move.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-component-move-checked { 
+    background-image: url(/static/images/teapot/icon_button/component_move_checked.png); 
+    background-position:1px 1px;
+}
+
+.ui-button .ui-icon.ui-icon-component-copy { 
+    background-image: url(/static/images/teapot/icon_button/component_copy.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-component-copy-checked { 
+    background-image: url(/static/images/teapot/icon_button/component_copy_checked.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-component-delete { 
+    background-image: url(/static/images/teapot/icon_button/component_cross.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-component-delete-checked { 
+    background-image: url(/static/images/teapot/icon_button/component_cross_checked.png); 
+    background-position:1px 1px;
+}
+
+.ui-button .ui-icon.ui-icon-component-rotate { 
+    background-image: url(/static/images/teapot/icon_button/component_rotate_clockwise.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-component-rotate-checked { 
+    background-image: url(/static/images/teapot/icon_button/component_rotate_clockwise_checked.png); 
+    background-position:1px 1px;
+}
+
+.ui-button .ui-icon.ui-icon-component-rotate-counter { 
+    background-image: url(/static/images/teapot/icon_button/component_rotate_anticlockwise.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-component-rotate-counter-checked { 
+    background-image: url(/static/images/teapot/icon_button/component_rotate_anticlockwise_checked.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-component-edit { 
+    background-image: url(/static/images/teapot/icon_button/component_edit.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-component-edit-checked { 
+    background-image: url(/static/images/teapot/icon_button/component_edit_checked.png); 
+    background-position:1px 1px;
+}
+
+.ui-button .ui-icon.ui-icon-component-undo { 
+    background-image: url(/static/images/teapot/icon_button/component_undo.png); 
+    background-position:1px 1px;
+}
+.ui-button .ui-icon.ui-icon-component-redo { 
+    background-image: url(/static/images/teapot/icon_button/component_redo.png); 
+    background-position:1px 1px;
+}
+
+
+#toolbar, #toolbar_component, #toolbar_editor{
+    display:inline-block;
+    margin-left: 5px;
+}

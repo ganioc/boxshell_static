@@ -1,0 +1,90 @@
+{% extends "template_bs_main.html" %}
+
+{% block body %}
+
+	<header id="head" class="secondary"></header> 
+
+	<!-- container -->
+	<div class="container">
+
+	  <ol class="breadcrumb">
+	    <li><a href="/">{% ifequal language "en-US" %}Home{% else %}主页{% endifequal %}</a></li>
+	    <li class="active">{% ifequal language "en-US" %}Contact{% else %}联系{% endifequal %}</li>
+	  </ol>
+	  <div class="row">
+			
+	    <!-- Article main content -->
+	    <article class="col-sm-9 maincontent">
+	      <header class="page-header">
+		<h1 class="page-title">{% ifequal language "en-US" %}Contact us{% else %}联系我们{% endifequal %}</h1>
+	      </header>
+	      
+	      <p>
+		We’d love to hear from you. Interested in working together? Fill out the form below with some info about your project and I will get back to you as soon as I can. Please allow a couple days for me to respond.
+	      </p>
+	      <br>
+	      <form>
+		<div class="row">
+		  <div class="col-sm-4">
+		    <input class="form-control" type="text" placeholder="Name">
+		  </div>
+		  <div class="col-sm-4">
+		    <input class="form-control" type="text" placeholder="Email">
+		  </div>
+		  <div class="col-sm-4">
+		    <input class="form-control" type="text" placeholder="Phone">
+		  </div>
+		</div>
+		<br>
+		<div class="row">
+		  <div class="col-sm-12">
+		    <textarea placeholder="Type your message here..." class="form-control" rows="9"></textarea>
+		  </div>
+		</div>
+		<br>
+		<div class="row">
+		  <div class="col-sm-6">
+		    <label class="checkbox"><input type="checkbox"> Sign up for newsletter</label>
+		  </div>
+		  <div class="col-sm-6 text-right">
+		    <input class="btn btn-action" type="submit" value="Send message">
+		  </div>
+		</div>
+	      </form>
+	      
+	    </article>
+	    <!-- /Article -->
+	    
+	    <!-- Sidebar -->
+	    <aside class="col-sm-3 sidebar sidebar-right">
+	      
+	      <div class="widget">
+		<h4>{% ifequal language "en-US" %}Address{% else %}地址{% endifequal %}:</h4>
+		<address>
+		  Pudong New District, Shanghai , People's Republic Of China
+		</address>
+		<h4>{% ifequal language "en-US" %}Phone{% else %}电话{% endifequal %}:</h4>
+		<address>
+		  (713) 791-1414
+		</address>
+	      </div>
+	      
+	    </aside>
+	    <!-- /Sidebar -->
+	    
+	  </div>
+	</div>	<!-- /container -->
+	
+{% endblock body %}
+
+
+{% block script %}
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/js/headroom.min.js"></script>
+	<script src="/static/js/jQuery.headroom.min.js"></script>
+	<script src="/static/js/template.js"></script>
+	<script src="/static/js/bs.js"></script>
+{% endblock %}
+	

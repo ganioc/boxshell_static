@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang={{language }}>
+  <head>
+    <title>{{ title }}</title>
+    {% block head-meta %}{% endblock %}
+    {% block head-link %}{% endblock %}
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <div id="wrapper">
+      {% block body %}{% endblock %}
+      {% block script %}{% endblock %}
+    </div><!-- end of id wrapper -->
+  </body>
+</html>
+
+	
