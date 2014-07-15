@@ -3,10 +3,10 @@ teapot = {};
 teapot.HOME = "http://127.0.0.1:8000/";
 
 teapot.read_data = function(myurl, mydata, success_function){
-    $.get(myurl,
-	  mydata,
-	  success_function,
-	  "json");
+  $.get(myurl,
+	mydata,
+	success_function,
+	"json");
 };
 
 teapot.menu_activate = function(str){
