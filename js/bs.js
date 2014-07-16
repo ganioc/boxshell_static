@@ -1,6 +1,7 @@
 // javascript for bs_main.html manipulation
 teapot = {};
 teapot.HOME = "http://127.0.0.1:8000/";
+//teapot.HOME = "http://www.boxshell.com/";
 
 teapot.read_data = function(myurl, mydata, success_function){
   $.get(myurl,
