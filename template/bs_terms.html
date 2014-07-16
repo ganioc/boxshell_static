@@ -1,0 +1,51 @@
+{% extends "template_bs_main.html" %}
+
+{% block body %}
+
+	<header id="head" class="secondary"></header> 
+
+	<!-- container -->
+	<div class="container">
+
+	  <ol class="breadcrumb">
+	    <li><a href="/">{% ifequal language "en-US" %}Home{% else %}主页{% endifequal %}</a></li>
+	    <li class="active">{% ifequal language "en-US" %}Terms & Conditions{% else %}条款声明{% endifequal %}</li>
+	  </ol>
+	  <div class="row">
+	    <!-- Article main content -->
+	    <article class="col-xs-12 maincontent">
+	      <header class="page-header">
+		<h1 class="page-title">{% ifequal language "en-US" %}Terms & Conditions{% else %}条款{% endifequal %}</h1>
+	      </header>
+	      
+	      <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+		<div class="panel panel-default">
+		  <div class="panel-body">
+		    <h3 class = "thin text-center">{% ifequal language "en-US" %}"After register:"{% else %}"注册新账户后："{% endifequal %}</h3>
+		    <p class="text-muted">You can use the service on boxshell.com for free if not specifically mentioned. We won't assure you that the service will have no problem, or it will have problem. Any direct or indirect consequence you got from using boxshell.com service will not be considered as a duty of boxshell.com to give any form of compensation.</p>
+		    <p class ="text-muted">Boxshell.com won't promise the service ending date once it's online. Boxshell.com can shut down or discontinue one of or all it's online services at any time without a notification before head.Of course we will try our best to make the website a healthy and long live. </p>
+		    <p class="text-muted"></p>
+		    <hr>
+		    <div class="centered"><a href="/register/" class="btn btn-primary btn-lg" role="button">Back to Register</a></div>
+		  </div>
+		</div>
+	      </div>
+	    </article>
+	    <!-- /Article -->
+	  </div>
+	</div>	<!-- /container -->
+	
+	{% endblock body %}
+
+
+{% block script %}
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/js/headroom.min.js"></script>
+	<script src="/static/js/jQuery.headroom.min.js"></script>
+	<script src="/static/js/template.js"></script>
+	<script src="/static/js/bs.js"></script>
+	<script src="/static/js/bs_register.js"></script>
+{% endblock %}
+	
