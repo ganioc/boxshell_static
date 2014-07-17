@@ -25,31 +25,37 @@
 		    <p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="/signin/">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
 		    <hr>
 
-		    <form method="post" action="/register/">
+		    <form  name="register_form" id="form_register" method="post" onsubmit="return validate();" action="/register/">
 		      {% csrf_token %}
-		      <div class="top-margin">
-			<label>Name</label>
-			<input type="text" class="form-control">
+		      <div class="form-group  has-feedback">
+			<label class="control-label" for="name_register">Name *</label>
+			<input id="name_register" type="text" class="form-control">
+			<span class="glyphicon form-control-feedback"></span>
+			<div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Please use letter first,a-zA-Z_- digits, don't use other characters.{% else %}请使用以下符号a-zA-Z_-和数字0-9,首字符必须为字母。请不要使用中文姓名。{% endifequal %}</div>
+			<!-- <p>too few words</p> -->
 		      </div>
-		      <!--
-		      <div class="top-margin">
-			<label>Last Name</label>
-			<input type="text" class="form-control">
-		      </div>
-		      -->
-		      <div class="top-margin">
+		      <div class="form-group has-feedback">
 			<label>Email Address <span class="text-danger">*</span></label>
-			<input type="text" class="form-control">
+			<input id="email_register" type="text" class="form-control">
+			<span class="glyphicon form-control-feedback"></span>
+			<div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Wrong email format.{% else %}邮件地址格式不正确。{% endifequal %}</div>
 		      </div>
 		      
 		      <div class="row top-margin">
 			<div class="col-sm-6">
-			  <label>Password <span class="text-danger">*</span></label>
-			  <input type="text" class="form-control">
+			  <div class="form-group has-feedback">
+			    <label>Password <span class="text-danger">*</span></label>
+			    <input id="pwd_register" type="text" class="form-control">
+			    <div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Wrong password, should be less than 40.{% else %}密码长度要短于40，无中文字符。{% endifequal %}</div>
+			  </div>
 			</div>
+		      </div>
 			<div class="col-sm-6">
-			  <label>Confirm Password <span class="text-danger">*</span></label>
-			  <input type="text" class="form-control">
+			  <div class="form-group has-feedback">
+			    <label>Confirm Password <span class="text-danger">*</span></label>
+			    <input id="pwd2_register" type="text" class="form-control">
+			    <div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Not equal to former password.{% else %}和第一个密码不同。{% endifequal %}</div>
+			  </div>
 			</div>
 		      </div>
 		      
@@ -58,12 +64,12 @@
 		      <div class="row">
 			<div class="col-lg-8">
 			  <label class="checkbox">
-			    <input type="checkbox"> 
+			    <input id="checkbox_terms" type="checkbox"> 
 			    I've read the <a href="/terms/">Terms and Conditions</a>
 			  </label>                        
 			</div>
 			<div class="col-lg-4 text-right">
-			  <button class="btn btn-action" type="submit">Register</button>
+			  <button id="submit_register" class="btn btn-action"  type="submit">Register</button>
 			</div>
 		      </div>
 		    </form>
