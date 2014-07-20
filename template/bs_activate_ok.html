@@ -1,0 +1,35 @@
+{% extends "template_bs_main.html" %}
+
+{% block body %}
+
+<header id="head" class="secondary"></header> 
+
+<!-- container -->
+<div class="container">
+  
+  <div class="row">
+    <!-- Article main content -->
+    <article class="col-md-8 maincontent">
+      <header class="page-header">
+	<h2 class="page-title">{% ifequal language "en-US" %}Activation succeed{% else %}激活成功{% endifequal %}</h2>
+      </header>
+      <p>{% ifequal language "en-US" %}Hello ！<b>{{ username }},  Click below <a href="/login/">link</a>, or you will be lead to login page in <b id="timer"></b> seconds ...</b>{% else %}你好！<b>{{ username }}, 请点击<a href="/login/">链接</a>，或者<b id="timer"></b>秒钟后系统将自动跳转到登录页面。。。</b>{% endifequal %}</p>
+
+    </article>
+    <!-- /Article -->
+  </div>
+</div>	<!-- /container -->
+{% endblock body %}
+
+
+{% block script %}
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/headroom.min.js"></script>
+<script src="/static/js/jQuery.headroom.min.js"></script>
+<script src="/static/js/template.js"></script>
+<script src="/static/js/bs.js"></script>
+<script src="/static/js/bs_activate.js"></script>
+{% endblock %}
+

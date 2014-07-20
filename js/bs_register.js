@@ -28,12 +28,12 @@ function validate_pattern(name,pattern){
     }
 }
 function validate_username(){
-    var name = $("#name_register").val();
-    if( name.length > 30){
+    var name1 = $("#name_register").val();
+    if(name1.length > 30){
 	return false;
     }
     else
-	return validate_pattern(name,/^[A-Za-z]+[A-Za-z0-9-_]*$/);
+	return validate_pattern(name1,/^[A-Za-z]+[A-Za-z0-9-_]*$/);
 }
 
 function validate_emailaddress(){
@@ -57,7 +57,10 @@ function validate_password(){
 function validate_password2(){
     var pwd2 = $("#pwd2_register").val();
     var pwd1 = $("#pwd_register").val();
-    if(pwd2 !== pwd1){
+    if(pwd2.length === 0){
+	return false;
+    }
+    else if(pwd2 !== pwd1){
 	return false;
     }
     else
@@ -137,6 +140,21 @@ $(document).ready(function() {
 	// else , add a tooltip on
     });
 
+    //$("#checkbox_terms").tooltip('enable');
+
+    if(check_warning("checkbox_terms") === false){
+	// show the tooltip on submit button
+	$("#submit_register").tooltip('disable');
+    }
+    else{
+	$("#submit_register").tooltip('enable');
+    }
+
+    keyup_callback()({target:{id:"name_register"}});
+    keyup_callback()({target:{id:"email_register"}});
+    keyup_callback()({target:{id:"pwd_register"}});
+    keyup_callback()({target:{id:"pwd2_register"}});
+    $("#name_register").focus();
 });
 
 

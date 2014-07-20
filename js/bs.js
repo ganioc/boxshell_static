@@ -17,12 +17,22 @@ teapot.read_data = function(myurl, mydata, success_function){
 	success_function,
 	"json");
 };
-
+teapot.is_command_link = function(str){
+    if(str.search('/command/')!== -1){
+	return true;
+    }
+    else{
+	return false;
+    }
+};
 teapot.menu_activate = function(str){
     var link = teapot.HOME;
 
     $("#nav_menu li").removeClass("active");
-    if( str === link){
+    if( teapot.is_command_link(str)){
+	return false;
+    }
+    else if( str === link){
 	$("#menu_home").addClass("active");
     }
     else if( str === link + "register/"){

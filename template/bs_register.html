@@ -2,88 +2,101 @@
 
 {% block body %}
 
-	<header id="head" class="secondary"></header> 
+<header id="head" class="secondary"></header> 
 
-	<!-- container -->
-	<div class="container">
-
-	  <ol class="breadcrumb">
-	    <li><a href="/">{% ifequal language "en-US" %}Home{% else %}主页{% endifequal %}</a></li>
-	    <li class="active">{% ifequal language "en-US" %}Register{% else %}注册{% endifequal %}</li>
-	  </ol>
-	  <div class="row">
-	    <!-- Article main content -->
-	    <article class="col-xs-12 maincontent">
-	      <header class="page-header">
-		<h1 class="page-title">{% ifequal language "en-US" %}Registration{% else %}注册{% endifequal %}</h1>
-	      </header>
-	      
-	      <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-		<div class="panel panel-default">
-		  <div class="panel-body">
-		    <h3 class = "thin text-center">{% ifequal language "en-US" %}"Register a new account"{% else %}"注册新账户"{% endifequal %}</h3>
-		    <p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="/signin/">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
-		    <hr>
-
-		    <form  name="register_form" id="form_register" method="post" onsubmit="return validate();" action="/register/">
-		      {% csrf_token %}
-		      <div class="form-group  has-feedback">
-			<label class="control-label" for="name_register">Name *</label>
-			<input id="name_register" type="text" class="form-control">
-			<span class="glyphicon form-control-feedback"></span>
-			<div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Please use letter first,[a-zA-Z_-] and digits, don't use other characters.Less than 30 letters.{% else %}请使用以下符号a-zA-Z_-和数字0-9,首字符必须为字母。请不要使用中文姓名。长度小于30.{% endifequal %}</div>
-		      </div>
-		      <div class="form-group has-feedback">
-			<label>Email Address <span class="text-danger">*</span></label>
-			<input id="email_register" type="text" class="form-control">
-			<span class="glyphicon form-control-feedback"></span>
-			<div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Wrong email format.{% else %}邮件地址格式不正确。{% endifequal %}</div>
-		      </div>
-		      
-		      <div class="form-group has-feedback">
-			  <label>Password <span class="text-danger">*</span></label>
-			  <input id="pwd_register" type="text" class="form-control">
-			  <span class="glyphicon form-control-feedback"></span>
-			  <div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Wrong password, should be less than 40.{% else %}密码长度要短于40，无中文字符。{% endifequal %}</div>
-		      </div>
-		      <div class="form-group has-feedback">
-			  <label>Confirm Password <span class="text-danger">*</span></label>
-			  <input id="pwd2_register" type="text" class="form-control">
-			  <span class="glyphicon form-control-feedback"></span>
-			  <div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Not equal to former password.{% else %}和第一个密码不同。{% endifequal %}</div>
-		    </div>
-		      <hr>
-		      <div class="row">
-			<div class="col-lg-8">
-			  <label class="checkbox">
-			    <input id="checkbox_terms" type="checkbox"> 
-			    I've read the <a href="/terms/">Terms and Conditions</a>
-			  </label>                        
-			</div>
-			<div class="col-lg-4 text-right">
-			  <button id="submit_register" class="btn btn-action"  type="submit" data-toggle="tooltip" data-placement="top" title={% ifequal language "en-US" %}"Please check Terms and Conditions."{% else %}"请勾选条款声明"{% endifequal %}>Register</button>
-			</div>
-		      </div>
-		    </form>
-		  </div>
-		</div>
+<!-- container -->
+<div class="container">
+  
+  <ol class="breadcrumb">
+    <li><a href="/">{% ifequal language "en-US" %}Home{% else %}主页{% endifequal %}</a></li>
+    <li class="active">{% ifequal language "en-US" %}Register{% else %}注册{% endifequal %}</li>
+  </ol>
+  <div class="row">
+    <!-- Article main content -->
+    <article class="col-xs-12 maincontent">
+      <header class="page-header">
+	<h1 class="page-title">{% ifequal language "en-US" %}Registration{% else %}注册{% endifequal %}</h1>
+      </header>
+      <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+	<div class="panel panel-default">
+	  <div class="panel-body">
+	    <h3 class = "thin text-center">{% ifequal language "en-US" %}"Register a new account"{% else %}注册新账户{% endifequal %}</h3>
+	    <p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="/signin/">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
+	    <hr>
+	    
+	    <form  name="register_form" id="form_register" method="post" onsubmit="return validate();" action="/register/">
+	      {% csrf_token %}
+	      <div class="form-group  has-feedback">
+		<label class="control-label" for="name_register">Name *</label>
+		<input id="name_register" type="text" class="form-control" name="username">
+		<span class="glyphicon form-control-feedback"></span>
+		<div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Please use letter first,[a-zA-Z_-] and digits, don't use other characters.Less than 30 letters.{% else %}请使用以下符号a-zA-Z_-和数字0-9,首字符必须为字母。请不要使用中文姓名。长度小于30.{% endifequal %}</div>
 	      </div>
-	    </article>
-	    <!-- /Article -->
+	      <div class="form-group has-feedback">
+		<label class="control-label" for="email_register">Email Address *</label>
+		<input id="email_register" type="text" class="form-control" name="email">
+		<span class="glyphicon form-control-feedback"></span>
+		<div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Wrong email format.{% else %}邮件地址格式不正确。{% endifequal %}</div>
+	      </div>
+
+	      <div class="form-group has-feedback">
+		<label  class="control-label" for="pwd_register">Password *</label>
+		<input id="pwd_register" type="text" class="form-control" name="password1" type="password">
+		<span class="glyphicon form-control-feedback"></span>
+		<div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Wrong password, should be less than 40.{% else %}密码长度要短于40，无中文字符。{% endifequal %}</div>
+	      </div>
+	      <div class="form-group has-feedback">
+		<label  class="control-label" for="pwd_register">Confirm Password *</label>
+		<input id="pwd2_register" type="text" class="form-control" name="password2" type="password">
+		<span class="glyphicon form-control-feedback"></span>
+		<div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Not equal to former password.{% else %}和第一个密码不同。{% endifequal %}</div>
+	      </div>
+	      <hr>
+	      <div class="row">
+		{% if form.username.errors %}
+		<div style="" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}User name exists.{% else %}用户名已存在。{% endifequal %}</div>
+		{% endif %}
+		{% if form.email.errors %}
+		<div style="" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Email already exists or with a wrong format.{% else %}邮件地址已存在或格式错误。{% endifequal %}</div>
+		{% endif %}
+		{% if form.password1.errors %}
+		<div style="" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Password length is too long.{% else %}密码长度过长。{% endifequal %}</div>
+		{% endif %}
+
+	      </div>
+
+
+	      </div>
+	      <div class="row">
+		<div class="col-lg-8">
+		  <label class="checkbox">
+		    <input id="checkbox_terms" type="checkbox"> 
+		    I've read the <a href="/terms/">Terms and Conditions</a>
+		  </label>                
+		</div>
+		<div class="col-lg-4 text-right">
+		  <button id="submit_register" class="btn btn-action"  type="submit" data-toggle="tooltip" data-placement="top" title={% ifequal language "en-US" %}"Please check Terms and Conditions."{% else %}"请勾选条款声明"{% endifequal %}>Register</button>
+		</div>
+	      </div><!-- rown -->
+	    </form>
 	  </div>
-	</div>	<!-- /container -->
-	
-	{% endblock body %}
+	</div>
+      </div>
+    </article>
+    <!-- /Article -->
+  </div>
+</div>	<!-- /container -->
+{% endblock body %}
 
 
 {% block script %}
-	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-	<script src="/static/js/jquery.min.js"></script>
-	<script src="/static/js/bootstrap.min.js"></script>
-	<script src="/static/js/headroom.min.js"></script>
-	<script src="/static/js/jQuery.headroom.min.js"></script>
-	<script src="/static/js/template.js"></script>
-	<script src="/static/js/bs.js"></script>
-	<script src="/static/js/bs_register.js"></script>
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/headroom.min.js"></script>
+<script src="/static/js/jQuery.headroom.min.js"></script>
+<script src="/static/js/template.js"></script>
+<script src="/static/js/bs.js"></script>
+<script src="/static/js/bs_register.js"></script>
 {% endblock %}
-	
+

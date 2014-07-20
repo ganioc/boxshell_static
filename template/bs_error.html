@@ -1,0 +1,36 @@
+{% extends "template_bs_main.html" %}
+
+{% block body %}
+
+<header id="head" class="secondary"></header> 
+
+<!-- container -->
+<div class="container">
+  
+  <div class="row">
+    <!-- Article main content -->
+    <article class="col-md-8 maincontent">
+      <header class="page-header">
+	<h2 class="page-title">{% ifequal language "en-US" %}Error Page{% else %}错误{% endifequal %}</h2>
+      </header>
+      <p>{% ifequal language "en-US" %}Hello ！{% else %}你好！{% endifequal %}{{ username }}:{{ error_type }}</p>
+      <blockquote>{{ error_content }}</blockquote>
+      <p>{{ error_additional }}</p>
+      <p class="text-center"><a class="btn btn-primary btn-large" href="/">{% ifequal language "en-US" %}Return{% else %}返回{% endifequal %}</a></p>
+    </article>
+    <!-- /Article -->
+  </div>
+</div>	<!-- /container -->
+{% endblock body %}
+
+
+{% block script %}
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/headroom.min.js"></script>
+<script src="/static/js/jQuery.headroom.min.js"></script>
+<script src="/static/js/template.js"></script>
+<script src="/static/js/bs.js"></script>
+{% endblock %}
+

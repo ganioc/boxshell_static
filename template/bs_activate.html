@@ -1,0 +1,36 @@
+{% extends "template_bs_main.html" %}
+
+{% block body %}
+
+<header id="head" class="secondary"></header> 
+
+<!-- container -->
+<div class="container">
+  
+  <div class="row">
+    <!-- Article main content -->
+    <article class="col-xs-12 maincontent">
+      <header class="page-header">
+	<h2 class="page-title">{% ifequal language "en-US" %}Activate Account{% else %}激活账号{% endifequal %}</h2>
+      </header>
+      <p class="text-left text-muted">{% ifequal language "en-US" %}Please click following link to activate your account:{% else %}请点击下面链接来激活账号:{% endifequal %}{{ username }}</p>
+      <blockquote><p><a href="{{ link }}">Link</a></p></blockquote>
+      <p>--Boxshell--</p>
+      <hr>
+    </article>
+    <!-- /Article -->
+  </div>
+</div>	<!-- /container -->
+{% endblock body %}
+
+
+{% block script %}
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/headroom.min.js"></script>
+<script src="/static/js/jQuery.headroom.min.js"></script>
+<script src="/static/js/template.js"></script>
+<script src="/static/js/bs.js"></script>
+{% endblock %}
+
