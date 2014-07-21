@@ -28,12 +28,12 @@ function validate_pattern(name,pattern){
     }
 }
 function validate_username(){
-    var name1 = $("#name_register").val();
-    if(name1.length > 30){
+    var name = $("#name_register").val();
+    if(name.length > 30){
 	return false;
     }
     else
-	return validate_pattern(name1,/^[A-Za-z]+[A-Za-z0-9-_]*$/);
+	return validate_pattern(name,/^[A-Za-z]+[A-Za-z0-9-_]*$/);
 }
 
 function validate_emailaddress(){
@@ -124,10 +124,10 @@ $(document).ready(function() {
     // console.log("begin bs_register function");
     // console.log(document.URL);
     //check
-    $("#name_register").keyup(keyup_callback() );
-    $("#email_register").keyup(keyup_callback());
-    $("#pwd_register").keyup(keyup_callback());
-    $("#pwd2_register").keyup(keyup_callback());
+    $("#name_register").keyup(keyup_callback() ).bind('paste',keyup_callback());
+    $("#email_register").keyup(keyup_callback()).bind('paste',keyup_callback());
+    $("#pwd_register").keyup(keyup_callback()).bind('paste',keyup_callback());
+    $("#pwd2_register").keyup(keyup_callback()).bind('paste',keyup_callback());
 
     $("#checkbox_terms").change(function(e){
 	// if it's on , remove the tooltip on submit button

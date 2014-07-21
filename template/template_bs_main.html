@@ -60,14 +60,15 @@
 		  </ul>
 		</li>
 		<li id="menu_contact"><a href="/contact/">{% ifequal language "en-US" %}Contact{% else %}联系{% endifequal %}</a></li>
-		{% ifequal  user.username "Anonymous" %}
+
+		{% if user %}
+		{% ifequal user "anonymous" %}
 		<li id="menu_signin"> <a class="btn" href="/signin/">{% ifequal language "en-US" %}Sign In/Register{% else %}登录/注册{% endifequal %}</a></li>
-
-
 		{% else %}
 		<li id="menu_account"><a href="/account/">{{ user.username }}</a></li>
-		<li id="menu_signout"><a class = "btn" href="/signout/">{% ifequal language "en-US" %}退出{% else %}Log Out{% endifequal %}</a></li>
+		<li id="menu_signout"><a class = "btn" href="/signout/">{% ifequal language "en-US" %}Logout{% else %}退出{% endifequal %}</a></li>
 		{% endifequal %}
+		{% endif %}
 	      </ul>
 	    </div><!--/.nav-collapse -->
 	  </div>

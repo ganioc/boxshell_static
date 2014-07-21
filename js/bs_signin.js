@@ -90,8 +90,8 @@ $(document).ready(function() {
     // console.log("begin bs_register function");
     // console.log(document.URL);
     //check
-    $("#email_signin").keyup(keyup_callback());
-    $("#pwd_signin").keyup(keyup_callback());
+    $("#email_signin").keyup(keyup_callback()).bind('paste',keyup_callback());
+    $("#pwd_signin").keyup(keyup_callback()).bind('paste',keyup_callback());
 
     keyup_callback()({target:{id:"email_signin"}});
     keyup_callback()({target:{id:"pwd_signin"}});
