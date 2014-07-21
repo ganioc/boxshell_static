@@ -1,5 +1,4 @@
 {% extends "template_bs_main.html" %}
-
 {% block body %}
 
 <header id="head" class="secondary"></header> 
@@ -11,10 +10,11 @@
     <!-- Article main content -->
     <article class="col-md-8 maincontent">
       <header class="page-header">
-	<h2 class="page-title">{% ifequal language "en-US" %}Activation succeed{% else %}激活成功{% endifequal %}</h2>
+	<h2 class="page-title">{% ifequal language "en-US" %}OK Page{% else %}成功{% endifequal %}</h2>
       </header>
-      <p>{% ifequal language "en-US" %}Hello ！<b>{{ username }},  Click below <a href="/signin/">link</a>, or you will be lead to login page in <b id="timer"></b> seconds ...</b>{% else %}你好！<b>{{ username }}, 请点击<a href="/signin/">链接</a>，或者<b id="timer"></b>秒钟后系统将自动跳转到登录页面。。。</b>{% endifequal %}</p>
-
+      <blockquote>{{ok_content }}</blockquote>
+      <p>{{ ok_additional }}</p>
+      <p class="text-center"><a class="btn btn-primary btn-large" href="/">{% ifequal language "en-US" %}Return{% else %}返回{% endifequal %}</a></p>
     </article>
     <!-- /Article -->
   </div>
@@ -30,6 +30,5 @@
 <script src="/static/js/jQuery.headroom.min.js"></script>
 <script src="/static/js/template.js"></script>
 <script src="/static/js/bs.js"></script>
-<script src="/static/js/bs_activate.js"></script>
 {% endblock %}
 

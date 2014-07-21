@@ -6,7 +6,7 @@ function count_down(){
     remain = remain -1;
     
     if(remain === 0){
-	window.location= window.location.protocol + "//" + window.location.host + "/login/";
+	window.location= window.location.protocol + "//" + window.location.host + "/signin/";
     }
     else{
 	setTimeout(count_down,1000);

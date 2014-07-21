@@ -1,10 +1,9 @@
 // javascript for bs_main.html manipulation
 teapot = {};
-teapot.HOST = "local";//"remote"
 
 teapot.HOME ="";
 
-if(teapot.HOST === "local"){
+if(window.location.host === "127.0.0.1:8000"){
   teapot.HOME = "http://127.0.0.1:8000/";
 }
 else{
@@ -27,8 +26,10 @@ teapot.is_command_link = function(str){
 };
 teapot.menu_activate = function(str){
     var link = teapot.HOME;
+    console.log("into menu_activate");
 
     $("#nav_menu li").removeClass("active");
+
     if( teapot.is_command_link(str)){
 	return false;
     }
@@ -43,6 +44,7 @@ teapot.menu_activate = function(str){
 	var key_word = directory.replace('/',"").toLowerCase();
 	$("#menu_" + key_word).addClass("active");
     }
+    console.log("out of menu_activate");
 };
 
 $(document).ready(function() {
