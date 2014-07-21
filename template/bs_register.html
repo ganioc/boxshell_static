@@ -21,7 +21,7 @@
 	<div class="panel panel-default">
 	  <div class="panel-body">
 	    <h3 class = "thin text-center">{% ifequal language "en-US" %}"Register a new account"{% else %}注册新账户{% endifequal %}</h3>
-	    <p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="/signin/">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
+	    <p class="text-center text-muted">{% ifequal language "en-US" %}Already has account,pls <a href="/signin/">Login</a>{% else %}老用户请<a href="/signin/">登录</a>{% endifequal %}</p>
 	    <hr>
 	    
 	    <form  name="register_form" id="form_register" method="post" onsubmit="return validate();" action="/register/">
@@ -54,19 +54,17 @@
 	      <hr>
 	      <div class="row">
 		{% if form.username.errors %}
-		<div style="" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}User name exists.{% else %}用户名已存在。{% endifequal %}</div>
+		<div style="" class="alert alert-danger" role="alert">{% ifequal language "en-US" %}User name exists.{% else %}用户名已存在。{% endifequal %}</div>
 		{% endif %}
 		{% if form.email.errors %}
-		<div style="" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Email already exists or with a wrong format.{% else %}邮件地址已存在或格式错误。{% endifequal %}</div>
+		<div style="" class="alert alert-danger" role="alert">{% ifequal language "en-US" %}Email already exists or with a wrong format.{% else %}邮件地址已存在。{% endifequal %}</div>
 		{% endif %}
 		{% if form.password1.errors %}
-		<div style="" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Password length is too long.{% else %}密码长度过长。{% endifequal %}</div>
+		<div style="" class="alert alert-danger" role="alert">{% ifequal language "en-US" %}Password length is too long.{% else %}密码长度过长。{% endifequal %}</div>
 		{% endif %}
 
 	      </div>
 
-
-	      </div>
 	      <div class="row">
 		<div class="col-lg-8">
 		  <label class="checkbox">

@@ -1,0 +1,39 @@
+{% extends "template_bs_main.html" %}
+
+{% block body %}
+
+<header id="head" class="secondary"></header> 
+
+<!-- container -->
+<div class="container">
+  
+  <ol class="breadcrumb">
+    <li><a href="/">{% ifequal language "en-US" %}Home{% else %}主页{% endifequal %}</a></li>
+    <li class="active">{% ifequal language "en-US" %}Account{% else %}帐号{% endifequal %}</li>
+  </ol>
+  <div class="row">
+    <!-- Article main content -->
+    <article class="col-xs-12 maincontent">
+      <header class="page-header">
+	<h1 class="page-title">{{ user.username }}{% ifequal language "en-US" %}'s Account{% else %}的账户{% endifequal %}</h1>
+      </header>
+      <blockquote>Please have a good look here. Everything is still under construction. </blockquote>
+
+    </article>
+    <!-- /Article -->
+  </div>
+</div>	<!-- /container -->
+{% endblock body %}
+
+
+{% block script %}
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/headroom.min.js"></script>
+<script src="/static/js/jQuery.headroom.min.js"></script>
+<script src="/static/js/template.js"></script>
+<script src="/static/js/bs.js"></script>
+<script src="/static/js/bs_register.js"></script>
+{% endblock %}
+

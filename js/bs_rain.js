@@ -2,8 +2,10 @@
 teapot = teapot||{};
 
 teapot.rain = function(){
+
+
   var no = 10;
-  var speed = 40;
+  var speed = 200;
   var s, x, y, sn, cs;
   var a, r, cx, cy;
   var i, doc_width, doc_height;
@@ -56,6 +58,7 @@ teapot.rain = function(){
   var rain_drops = function(){
     //console.log("rain.");
     for( i =0; i<no; i++){
+	
       update_rain();
       if((x[i]<=1)||(x[i]>=(doc_width -20))||(y[i]>=(doc_height -2))){
 	make_rain();
@@ -64,8 +67,8 @@ teapot.rain = function(){
       }
       $("#dot" + i).css('top', y[i]);
       $("#dot" + i).css('left', x[i]);
+
     }
-    setTimeout(rain_drops, speed);
   };
   return function(){
     init();
@@ -75,7 +78,7 @@ teapot.rain = function(){
 
 $(document).ready(function() {
   console.log("begin rain function");
-  
+
   teapot.rain()();
 
 });

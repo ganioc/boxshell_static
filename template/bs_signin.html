@@ -21,34 +21,47 @@
 	      <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 		<div class="panel panel-default">
 		  <div class="panel-body">
-		    <h3 class="thin text-center">Sign in to your account</h3>
-		    <p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="/register/">Register</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
+		    <h3 class="thin text-center">{% ifequal language "en-US" %}Sign in to your account{% else %}登录账户{% endifequal %}</h3>
+		    <p class="text-center text-muted">{% ifequal language "en-US" %}New user please  <a href="/register/">Register</a>{% else %}新用户请<a href="/register/">注册</a>{% endifequal %}</p>
 		    <hr>
-		    
-		    <form>
-		      <div class="top-margin">
-			<label>Username/Email <span class="text-danger">*</span></label>
-			<input type="text" class="form-control">
+		    <form id="form_signin" method="post" onsubmit="return validate();" action="/signin/">
+		      {% csrf_token %}
+		      <div class="form-group has-feedback">
+			<label class="control-label" for="email_register">Email Address *</label>
+			<input id="email_signin" type="text" class="form-control" name="email">
+			<span class="glyphicon form-control-feedback"></span>
+			<div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Wrong email format.{% else %}邮件地址格式不正确。{% endifequal %}</div>
 		      </div>
-		      <div class="top-margin">
-			<label>Password <span class="text-danger">*</span></label>
-			<input type="password" class="form-control">
+		      <div class="form-group has-feedback">
+			<label  class="control-label" for="pwd_register">Password *</label>
+			<input id="pwd_signin" type="text" class="form-control" name="password" type="password">
+			<span class="glyphicon form-control-feedback"></span>
+			<div style="display:none;" class="alert alert-warning" role="alert">{% ifequal language "en-US" %}Wrong password, should be less than 40.{% else %}密码长度要短于40，无中文字符。{% endifequal %}</div>
 		      </div>
-		      
 		      <hr>
-		      
+		      <div class="row">
+			{% if form.email.errors %}
+			<div style="" class="alert alert-danger" role="alert">{% ifequal language "en-US" %}Email not exists or with a wrong format.{% else %}邮件地址不存在。{% endifequal %}</div>
+			{% endif %}
+			{% if form.password.errors %}
+			<div style="" class="alert alert-danger" role="alert">{% ifequal language "en-US" %}Password  is wrong.{% else %}密码不对。{% endifequal %}</div>
+			{% endif %}
+			{% if form.activation.errors %}
+			<div style="" class="alert alert-danger" role="alert">{% ifequal language "en-US" %}Account need activation, please check your mailbox.{% else %}帐号还没有激活，请查看你的注册信箱。{% endifequal %}</div>
+			{% endif %}
+
+		      </div>
 		      <div class="row">
 			<div class="col-lg-8">
 			  <b><a href="">Forgot password?</a></b>
 			</div>
 			<div class="col-lg-4 text-right">
-			  <button class="btn btn-action" type="submit">Sign in</button>
+			  <button id="btn_signin" class="btn btn-action" type="submit">Sign in</button>
 			</div>
 		      </div>
 		    </form>
 		  </div>
 		</div>
-		
 	      </div>
 	      
 	    </article>
@@ -68,5 +81,6 @@
 	<script src="/static/js/jQuery.headroom.min.js"></script>
 	<script src="/static/js/template.js"></script>
 	<script src="/static/js/bs.js"></script>
+	<script src="/static/js/bs_signin.js"></script>
 {% endblock %}
 	
