@@ -8,7 +8,7 @@
 {% endblock head-meta %}
 
 {% block head-link %}
-	<link rel="shortcut icon" href="/static/images/bs_favicon.png">
+	<link rel="shortcut icon" href="/static/images/new_logo.png">
 	
 <!--	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700"> -->
 	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
@@ -52,13 +52,13 @@
 
 		<li id="menu_home"><a href="/">{% ifequal language "en-US" %}Home{% else %}主页{% endifequal %}</a></li>
 		<li id="menu_about" ><a href="/about/">{% ifequal language "en-US" %}About{% else %}关于{% endifequal %}</a></li>
-		<li id="menu_dropdown" class="dropdown">
-		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>
-		  <ul class="dropdown-menu">
-		    <li><a href="sidebar-left.html">Left Sidebar</a></li>
-		    <li class="active"><a href="sidebar-right.html">Right Sidebar</a></li>
-		  </ul>
-		</li>
+		<!--               
+		<li id="menu_dropdown" class="dropdown">		   <a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>	   
+		<ul class="dropdown-menu">		       <li><a href="sidebar-left.html">Left Sidebar</a></li>
+		<li class="active"><a href="sidebar-right.html">Right Sidebar</a></li>	
+		</ul>	       
+		</li>	        
+		-->
 		<li id="menu_contact"><a href="/contact/">{% ifequal language "en-US" %}Contact{% else %}联系{% endifequal %}</a></li>
 
 		{% if user %}
@@ -111,9 +111,13 @@
 		<div class="col-md-6 widget">
 		  <h3 class="widget-title">We wish</h3>
 		  <div class="widget-body">
-		    <p>Make it easy and fun.</p>
-		    <p>Save your money and time.</p>
+		      <div style="float:right;padding-right:30px;">
+			  <img src="/static/images/new_logo_small_square.png" width="100px"></img>
+		      </div>
+		      <p>Make it easy and fun.</p>
+		      <p>Save your money and time.</p>
 		  </div>
+
 		</div>
 		
 	      </div> <!-- /row of widgets -->
