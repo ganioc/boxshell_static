@@ -28,4 +28,3 @@ teapot.base.coord_transform = function(point, degree){
     return {};
 };
 
-

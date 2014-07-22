@@ -1,11 +1,12 @@
 /* Header */
 #head { 
-    background:url(/static/images/city_1920_600.jpg) no-repeat;
+    background:url(/static/images/city2_1920_600.jpg);/* no-repeat;*/
     /*#BDB76B;#181015; url( ../images/bg_header.jpg) no-repeat; */
     background-size:cover;/*cover;*/
     Background-attachment:fixed;
     background-position:0% 0%;
-    min-height:500px; 
+    /* min-height:500px;  */
+    height:500px;
     text-align: center; 
     padding-top:240px; 
     color:white; 
