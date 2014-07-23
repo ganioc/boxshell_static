@@ -9,7 +9,7 @@ var v_percent = 0;
 var moving_direction_h = 1;
 var moving_direction_v = 1;
 var moving_direction_h_speed = 0.15;
-var moving_direction_v_speed = 0.15;
+var moving_direction_v_speed = 0.05;
 //var moving_time_delta = 40;
 
 function change_background(){
@@ -36,21 +36,27 @@ function move_image_position(){
     v_percent = v_percent + moving_direction_v * moving_direction_v_speed;
     //var w = window.innerWidth;
 
-    if(h_percent > 100 || h_percent < 0){
-	//w_percent = 0;
+    if(h_percent > 100){
+	h_percent = 100;
 	moving_direction_h = -moving_direction_h;
 	change_background();
     }
-    else if( v_percent > 100 || v_percent < 0){
-	moving_direction_v = -moving_direction_v;
-	// change_background();
+    else if(h_percent < 0){
+	h_percent = 0;
+	moving_direction_h = -moving_direction_h;
+	change_background();
     }
-	
-    $("#head").css("background-position", h_percent + "% " +   v_percent + "%" );
-    //setTimeout(move_image_position,moving_time_delta);
+    else if(v_percent > 100){
+	v_percent = 100;
+	moving_direction_v = -moving_direction_v;
+    }
+    else if(v_percent < 0){
+	v_percent = 0;
+	moving_direction_v = -moving_direction_v;
+    }
+    $("#head").css("background-position", h_percent + "% " + v_percent + "%");
     window.requestNextAnimationFrame(move_image_position);
 }
-
 $(document).ready(function() {
     console.log("begin bs_main function");
 
