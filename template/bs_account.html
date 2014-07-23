@@ -6,20 +6,42 @@
 
 <!-- container -->
 <div class="container">
-  
-  <ol class="breadcrumb">
+  <!--   <ol class="breadcrumb">
     <li><a href="/">{% ifequal language "en-US" %}Home{% else %}主页{% endifequal %}</a></li>
     <li class="active">{% ifequal language "en-US" %}Account{% else %}帐号{% endifequal %}</li>
-  </ol>
-  <div class="row">
-    <!-- Article main content -->
-    <article class="col-xs-12 maincontent">
-      <header class="page-header">
-	<h1 class="page-title">{{ user.username }}{% ifequal language "en-US" %}'s Account{% else %}的账户{% endifequal %}</h1>
-      </header>
-      <blockquote>Please have a good look here. Everything is still under construction. </blockquote>
+  </ol> -->
 
-    </article>
+  <div class="row">
+    <!--       <header class="page-header">	<h1 class="page-title">{{ user.username }}{% ifequal language "en-US" %}'s Account{% else %}的账户{% endifequal %}</h1>      </header> -->
+      <div class="row">
+	  <aside class="col-md-2 sidebar sidebar-left">
+	      <img src="/static/images/man.png" width="160px"></img>
+	      <h4 class="text-center">{{ user.username }}</h4>
+	      <ul class="list-group">
+		  <li class="list-group-item">Company Name</li>
+		  <li class="list-group-item">Location</li>
+		  <li class="list-group-item">Email</li>
+		  <li class="list-group-item">Website</li>
+		  <li class="list-group-item">Join Date</li>
+	      </ul>
+	  </aside>
+	  
+	  <article class="col-md-10 col-xs-4 maincontent">
+	      <div class="page-header">
+		  <h2>Example page header <small>Subtext for header</small></h2>
+		  <button class="btn btn-primary">Edit Profile</button>
+	      </div>
+	      <ul class="list-group">
+		  <li class="list-group-item caption"><b>Project List</b></li>
+		  <li class="list-group-item">Project1</li>
+		  <li class="list-group-item">Project2</li>
+		  <li class="list-group-item">Project3</li>
+		  <li class="list-group-item">Project4</li>
+	      </ul>
+
+	  </article>
+      </div>
+
     <!-- /Article -->
   </div>
 </div>	<!-- /container -->

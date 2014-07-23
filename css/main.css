@@ -118,3 +118,7 @@ img.pull-left { margin-right: 10px; }
     font-size:13px;
     vertical-align:middle;
 }
+
+.caption{
+    background:whitesmoke;
+}
