@@ -119,6 +119,21 @@ img.pull-left { margin-right: 10px; }
     vertical-align:middle;
 }
 
-.caption{
-    background:whitesmoke;
+/* .caption{ */
+/*     background:whitesmoke; */
+/* } */
+
+caption{
+    font-size:18px;
+    background:#F5F5F5;
+    padding:3px 10px;
+    border-top:2px solid #DDD;
+}
+thread tr th{
+    font-size:15px;
+}
+
+.pull-margin-left{
+    margin-left:4px;
+
 }

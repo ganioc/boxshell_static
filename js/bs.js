@@ -28,8 +28,6 @@ window.requestNextAnimationFrame =
 	    };
     })();
 
-
-
 teapot.read_data = function(myurl, mydata, success_function){
   $.get(myurl,
 	mydata,

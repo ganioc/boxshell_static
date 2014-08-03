@@ -14,31 +14,64 @@
   <div class="row">
     <!--       <header class="page-header">	<h1 class="page-title">{{ user.username }}{% ifequal language "en-US" %}'s Account{% else %}的账户{% endifequal %}</h1>      </header> -->
       <div class="row">
-	  <aside class="col-md-2 sidebar sidebar-left">
-	      <img src="/static/images/man.png" width="160px"></img>
+	  <aside class="col-md-3 sidebar sidebar-left">
+	      <img src="/static/images/man.png" width="160px" class="img-rounded"></img>
 	      <h4 class="text-center">{{ user.username }}</h4>
 	      <ul class="list-group">
-		  <li class="list-group-item">Company Name</li>
-		  <li class="list-group-item">Location</li>
-		  <li class="list-group-item">Email</li>
-		  <li class="list-group-item">Website</li>
-		  <li class="list-group-item">Join Date</li>
+		  <li class="list-group-item">Company:</li>
+		  <li class="list-group-item">Location:</li>
+		  <li class="list-group-item">Email:</li>
+		  <li class="list-group-item">Website:</li>
+		  <li class="list-group-item">Join Date:</li>
 	      </ul>
 	  </aside>
 	  
-	  <article class="col-md-10 col-xs-8 maincontent">
+	  <article class="col-md-9 col-xs-8 maincontent">
 	      <div class="page-header">
-		  <h2>Example page header <small>Subtext for header</small></h2>
-		  <button class="btn btn-primary">Edit Profile</button>
+		{% ifequal language "en-US" %}<h2 style="display:inline;">Account <small>management </small></h2><button class="btn btn-xs btn-info pull-right" type="button" style="display:inline">Edit Profile</button>		        {% else %}<h2>账户 <small>管理</small></h2>
+		{% endifequal %}
+		
 	      </div>
-	      <ul class="list-group">
-		  <li class="list-group-item caption"><b>Project List</b></li>
-		  <li class="list-group-item">Project1</li>
-		  <li class="list-group-item">Project2</li>
-		  <li class="list-group-item">Project3</li>
-		  <li class="list-group-item">Project4</li>
-	      </ul>
-
+	      <p id="paragraph">
+		<table id="project-table" class="table table-hover table-striped table-bordered ">
+		  <caption style="text-align:left">{% ifequal language "en-US" %}Projects{% else %}项目列表{% endifequal %}<a href="/"><span class="glyphicon glyphicon-plus pull-right pull-margin-left"></span></a><a href="/"><span class="glyphicon glyphicon-minus pull-right pull-marin-left"></span></a></caption>
+		  {% ifequal language "zh-CN" %}
+		  <thead>
+		    <tr>
+		      <th id="first_row"><input type="checkbox"></input></th>
+		      <th>项目名称</th>
+		      <th>描述</th>
+		      <th>上次修改</th>
+		    </tr>
+		  </thead>
+		  {% else %}
+		  <thead>
+		    <tr>
+		      <th id="first_row"><input type="checkbox" ></input></th>
+		      <th>Project Name</th>
+		      <th>Description</th>
+		      <th>Last Modified</th>
+		    </tr>
+		  </thead>
+		  {% endifequal %}
+		  <tbody id="project-list">
+		    {% for project in files %}
+		    <tr>
+		      <td><input type="checkbox"></td>
+		      <td><a href="">{{ project.name }}</a></td>
+		      <td>{{ project.descrip }}</td>
+		      <td>{{ project.modified_date|date:"Y-M-d H:i"}}</td>
+		    </tr>
+		    {% endfor %}
+		    <tr>
+		      <td> </td>
+		      <td> </td>
+		      <td> </td>
+		      <td> </td>
+		    </tr>
+		  </tbody>
+		</table><!-- end of id file_list_content -->
+	      </p>
 	  </article>
       </div>
 
@@ -56,6 +89,7 @@
 <script src="/static/js/jQuery.headroom.min.js"></script>
 <script src="/static/js/template.js"></script>
 <script src="/static/js/bs.js"></script>
+<script src="/static/js/bs_account.js"></script>
 <!-- <script src="/static/js/bs_register.js"></script> -->
 {% endblock %}
 
