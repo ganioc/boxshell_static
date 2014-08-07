@@ -3,6 +3,9 @@
 {% block body %}
 
 <header id="head" class="secondary"></header> 
+<form id="get_feed">
+  {% csrf_token %}
+</form>
 
 <!-- container -->
 <div class="container">
@@ -30,47 +33,10 @@
 	      <div class="page-header">
 		<h2 style="display:inline;">{% ifequal language "en-US"%}Account {% else %}账号{% endifequal %}</h2>
 		<small>{% ifequal language "en-US" %}management{% else %}管理{% endifequal %} </small>
-		<button class="btn btn-default pull-right" style="" id="btn-edit-account">{% ifequal language "en-US" %}edit{% else %}编辑{% endifequal %}</button>
+		<button class="btn btn-info btn-xs pull-right" style="" id="btn-edit-account">{% ifequal language "en-US" %}edit{% else %}编辑{% endifequal %}</button>
 	      </div>
 	      <div id="paragraph-content">
-		<table id="project-table" class="table table-hover table-striped table-bordered ">
-		  <caption style="text-align:left">{% ifequal language "en-US" %}Projects{% else %}项目列表{% endifequal %}<a href="/"><span class="glyphicon glyphicon-plus pull-right pull-margin-left"></span></a><a href="/"><span class="glyphicon glyphicon-minus pull-right pull-marin-left"></span></a></caption>
-		  {% ifequal language "zh-CN" %}
-		  <thead>
-		    <tr>
-		      <th id="first_row"><input type="checkbox"></input></th>
-		      <th>项目名称</th>
-		      <th>描述</th>
-		      <th>上次修改</th>
-		    </tr>
-		  </thead>
-		  {% else %}
-		  <thead>
-		    <tr>
-		      <th id="first_row"><input type="checkbox" ></input></th>
-		      <th>Project Name</th>
-		      <th>Description</th>
-		      <th>Last Modified</th>
-		    </tr>
-		  </thead>
-		  {% endifequal %}
-		  <tbody id="project-list">
-		    {% for project in files %}
-		    <tr>
-		      <td><input type="checkbox"></td>
-		      <td><a href="">{{ project.name }}</a></td>
-		      <td>{{ project.descrip }}</td>
-		      <td>{{ project.modified_date|date:"Y-M-d H:i"}}</td>
-		    </tr>
-		    {% endfor %}
-		    <tr>
-		      <td> </td>
-		      <td> </td>
-		      <td> </td>
-		      <td> </td>
-		    </tr>
-		  </tbody>
-		</table><!-- end of id file_list_content -->
+
 	      </div>
 	  </article>
       </div>

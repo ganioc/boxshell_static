@@ -2,6 +2,7 @@
 teapot = {};
 
 teapot.HOME ="";
+teapot.csrf = $("#get_feed input").attr("value");
 
 if(window.location.host === "127.0.0.1:8000"){
   teapot.HOME = "http://127.0.0.1:8000/";
@@ -28,12 +29,41 @@ window.requestNextAnimationFrame =
 	    };
     })();
 
+// ajax function to interact with the server
+teapot.get_data = function(myurl, mydata/* json data */, success_function,error_function){
+    $.ajax({ type:"GET",
+	     dataType:"json",
+	     url:myurl,
+	     data:mydata,
+	     success:success_function,
+	     error:error_function
+	});
+};
+
+teapot.send_data = function(myurl, mydata/* json data */, success_function, error_function){
+    var data1 = {};
+    data1['csrfmiddlewaretoken']= teapot.csrf;
+    $.extend(data1,mydata);
+
+    $.ajax({ type:"POST",
+	     dataType:"json",
+	     url:myurl,
+	     data:data1,
+	     success:success_function,
+	     error:error_function
+	});
+
+};
+//this is a simple get data ajax call function
 teapot.read_data = function(myurl, mydata, success_function){
   $.get(myurl,
-	mydata,
-	success_function,
-	"json");
+        mydata,
+        success_function,
+        "json");
 };
+
+// end of ajax function
+
 teapot.is_command_link = function(str){
     if(str.search('/command/')!== -1){
 	return true;
