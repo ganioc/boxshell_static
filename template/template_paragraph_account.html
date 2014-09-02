@@ -1,4 +1,68 @@
-<form>
-    Hello, account information!
+<form role="form" class="form-horizontal" name="account_form" id="form_account" method="post" action="/command/set_account/">
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="account_gender">Gender</label>
+	<div class="col-sm-3">
+	    <select id="account_gender" type="text" class="form-control" name="gender" value="{{ account.gender }}">
+		<option>Boy</option>
+		<option>Girl</option>
+		<option>Unclear</option>
+	    </select>
+	</div>
+    </div>
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="account_avatar">Avatar</label>
+	<div class="col-sm-4">
+	    <input id="account_avatar" type="text" class="form-control" name="avatar" value="{{ account.avatar }}">
+	</div>
+    </div>
 
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="account_country">Country</label>
+	<div class="col-sm-4">
+	    <input id="account_country" type="text" class="form-control" name="country" value="{{ account.country }}">
+	</div>
+    </div>
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="account_city">City</label>
+	<div class="col-sm-4">
+	    <input id="account_city" type="text" class="form-control" name="city" value="{{ account.city }}">
+	</div>
+    </div>
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="account_location">Location</label>
+	<div class="col-sm-4">
+	    <input id="account_location" type="text" class="form-control" name="location" value="{{ account.location }}">
+	</div>
+    </div>
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="account_website">Website</label>
+	<div class="col-sm-4">
+	    <input id="account_website1" type="text" class="form-control" name="website" value="{{ account.website1 }}">
+	</div>
+    </div>
+        <div class="form-group">
+	<label class="control-label col-sm-2" for="account_company">Company</label>
+	<div class="col-sm-4">
+	    <input id="account_company" type="text" class="form-control" name="company" value="{{ account.company }}">
+	</div>
+    </div>
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="account_occupation">Occupation</label>
+	<div class="col-sm-4">
+	    <input id="account_occupation" type="text" class="form-control" name="occupation" value="{{ account.occupation }}">
+	</div>
+    </div>
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="account_introduction">Introduction</label>
+	<div class="col-sm-4">
+	    <textarea id="account_introduction" rows="3" class="form-control" name="introduction" value="{{ account.introduction }}"></textarea>
+	</div>
+    </div>
+    <div class="form-group">
+	<div class="col-sm-offset-2 col-sm-10">
+	    <button type="button" id="account_save" class="btn btn-info">Save</button>
+	    <button type="button" id="account_leave" class="btn btn-warning">Leave</button>
+	</div>
+    </div>
 </form>
+

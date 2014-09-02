@@ -21,11 +21,32 @@
 	      <img src="/static/images/man.png" width="160px" class="img-rounded"></img>
 	      <h4 class="text-center">{{ user.username }}</h4>
 	      <ul class="list-group">
-		  <li class="list-group-item">Company:</li>
-		  <li class="list-group-item">Location:</li>
-		  <li class="list-group-item">Email:</li>
-		  <li class="list-group-item">Website:</li>
-		  <li class="list-group-item">Join Date:</li>
+		  <li class="list-group-item"><b>Email:</b>{{ user.email }}</li>
+		  <li class="list-group-item"><b>Joined:</b>{{ user.date_joined|date:"Y-M-d"|lower }}</li>
+		  {% if account.gender and account.gender != "unclear" %}
+		  <li class="list-group-item"><b>Gender:</b>{{ account.gender }}</li>
+		  {% endif %}
+		  {% if account.country %}
+		  <li class="list-group-item"><b>Country:</b>{{ account.country }}</li>
+		  {% endif %}
+		  {% if account.city %}
+		  <li class="list-group-item"><b>City:</b>{{ account.city }}</li>
+		  {% endif %}
+		  {% if account.location %}
+		  <li class="list-group-item"><b>Location:</b>{{ account.location }}</li>
+		  {% endif %}
+		  {% if account.website1 %}
+		  <li class="list-group-item"><b>Website1:</b>{{ account.website1 }}</li>
+		  {% endif %}
+		  {% if account.company %}
+		  <li class="list-group-item"><b>Company:</b>{{ account.company }}</li>
+		  {% endif %}
+		  {% if account.occupation %}
+		  <li class="list-group-item"><b>Occupation:</b>{{ account.occupation }}</li>
+		  {% endif %}
+		  {% if account.introduction %}
+		  <li class="list-group-item"><b>Introduction:</b>{{ account.introduction }}</li>
+		  {% endif %}
 	      </ul>
 	  </aside>
 	  
