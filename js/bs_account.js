@@ -65,15 +65,80 @@ teapot.set_account_data = function(){
     set_val("introduction");
 
 };
+// this would be a modal dialog
+teapot.get_project_name = function(){
+    $("#dlg_project").modal("show");
+    return false;
+};
+teapot.get_file_name = function(){
+    $("#dlg_file").modal("show");
+    return false;
+};
 teapot.set_callback = function(){
+    $("#btn_edit_account").tooltip();
+
+    if($("#file_table")){
+
+	// add all callback functions
+	$("#btn_add_file").tooltip().click(function(){
+	    console.log("add file pressed");
+	    teapot.get_file_name();
+	});
+	$("#file_list tr td a").click(function(){
+	    console.log("file be clicked:" + $(this).html());
+	    var filetype = $("#file_list tr td a").parent().next().next().html().trim();
+	    var project = $('ol.breadcrumb li.active').html().trim();
+	    // var temp = $(this).html();
+	    // teapot.load_file(temp.trim());
+	    window.open('/' + filetype  + "/" + project + "/" + $(this).html());
+	});
+    }
+
     // if project in paragraph, 
     if($("#project_table")){
-	$("#btn_add_project").click(function(){
-	    console.log("add project");
-	    
-	});
-	$("#btn_add_project").tooltip();
 
+	$("#btn_add_project").tooltip().click(function(){
+	    console.log("add project");
+	    teapot.get_project_name();
+
+	});
+	
+	$("#btn_dlg_project").click(function(){
+	    
+	    console.log("leave dlg");
+	    var name = $("#input_dlg_project").val().split(/[ ,]+/)[0];
+	    if(name){
+		$("#dlg_project").modal("toggle");
+		// name is the project_name
+		// use ajax to create a project
+		var myurl = "/command/set/";
+		var mydata = {};
+		mydata["name"]="create_project";
+		mydata["content"]= name;
+		teapot.send_data(
+		    myurl,
+		    mydata,
+		    function(responseTxt/* JSON object*/,statusText,xhr){
+			//teapot.load_account();
+			console.log(responseTxt);
+			teapot.load_project();
+		    },
+		    function(xhr,status,error){
+			console.log(error);
+		    }
+		);
+	    }
+	    else{
+		console.log("invalid name");
+		
+	    }
+	});
+
+	$("#project_list tr td a").click(function(){
+	    console.log("project be clicked:" + $(this).html());
+	    var temp = $(this).html();
+	    teapot.load_file(temp.trim());
+	});
     }
 
     // if account in paragraph,
@@ -124,14 +189,14 @@ teapot.clear_paragraph = function(){
 teapot.set_paragraph = function(str){
     $("#paragraph-content").append(str);
     teapot.set_callback();
-    $("#paragraph-content").slideDown(1000);
+    $("#paragraph-content").slideDown(500);
 };
 teapot.load_account = function(){
     teapot.clear_paragraph();
     var myurl = "/command/get/";
     var mydata = {};
     mydata["name"]= "account";
-
+    
     teapot.send_data(
 	myurl,
 	mydata,
@@ -167,6 +232,28 @@ teapot.load_project = function(){
 	}
     );
 };
+teapot.load_file = function(project){
+    teapot.clear_paragraph();
+    var myurl = "/command/get/";
+    var mydata = {};
+    mydata["name"]= "file";
+    mydata["content"] = project;
+
+    teapot.send_data(
+	myurl,
+	mydata,
+	function(responseTxt/* JSON object*/,statusText,xhr){
+	    console.log(responseTxt);
+	    console.log(responseTxt.content);
+	    teapot.clear_paragraph();
+	    teapot.set_paragraph(responseTxt.content);
+	},
+	function(xhr,status,error){
+	    console.log(error);
+	}
+    );    
+
+};
 
 //display account info
 
@@ -180,16 +267,52 @@ teapot.load_project = function(){
 $(document).ready(function() {
     console.log("begin bs_account function");
     //console.log(document.URL);
+    
+    $("#btn_dlg_file").click(function(e){
+	console.log("leave dlg pressed");
+	var name = $("#input_dlg_file").val().split(/[ ,]+/)[0];
+	var project = $('ol.breadcrumb li.active').html();
+	$("#dlg_file").modal("hide");
+	e.stopPropagation();
+	if(name){
+	    var myurl = "/command/set/";
+	    var mydata = {};
+	    var temp = {};
+	    temp["name"] = name;
+	    temp["type"] = $('input[name=radio_file_type]:checked').val();
+	    temp["description"] = $("#input_dlg_file_description").val();
+	    temp["project"] = project;
+	    mydata["name"]="create_file";
+	    mydata["content"]= JSON.stringify(temp);
+	    teapot.send_data(
+	        myurl,
+	        mydata,
+	        function(responseTxt/* JSON object*/,statusText,xhr){
+	    	    //teapot.load_account();
+	    	    console.log(responseTxt);
+	    	    teapot.load_file(project);
+	        },
+	        function(xhr,status,error){
+	    	    console.log(error);
+	        }
+	    );
+	}
+	else{
+	    console.log("invalid name");
+	}
+    });
 
     // load project info automatically, default behavior
     teapot.load_project();
 
-    $("#btn-edit-account").click(function(){
+    $("#btn_edit_account").click(function(){
 	//bring out account edit form, using ajax
 	console.log("edit pressed");
 	teapot.load_account();
 
     });
+
+
     
 });
 

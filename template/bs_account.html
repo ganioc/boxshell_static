@@ -14,56 +14,109 @@
     <li class="active">{% ifequal language "en-US" %}Account{% else %}帐号{% endifequal %}</li>
   </ol> -->
 
-  <div class="row">
     <!--       <header class="page-header">	<h1 class="page-title">{{ user.username }}{% ifequal language "en-US" %}'s Account{% else %}的账户{% endifequal %}</h1>      </header> -->
-      <div class="row">
-	  <aside class="col-md-3 sidebar sidebar-left">
-	      <img src="/static/images/man.png" width="160px" class="img-rounded"></img>
-	      <h4 class="text-center">{{ user.username }}</h4>
-	      <ul class="list-group">
-		  <li class="list-group-item"><b>Email:</b>{{ user.email }}</li>
-		  <li class="list-group-item"><b>Joined:</b>{{ user.date_joined|date:"Y-M-d"|lower }}</li>
-		  {% if account.gender and account.gender != "unclear" %}
-		  <li class="list-group-item"><b>Gender:</b>{{ account.gender }}</li>
-		  {% endif %}
-		  {% if account.country %}
-		  <li class="list-group-item"><b>Country:</b>{{ account.country }}</li>
-		  {% endif %}
-		  {% if account.city %}
-		  <li class="list-group-item"><b>City:</b>{{ account.city }}</li>
-		  {% endif %}
-		  {% if account.location %}
-		  <li class="list-group-item"><b>Location:</b>{{ account.location }}</li>
-		  {% endif %}
-		  {% if account.website1 %}
-		  <li class="list-group-item"><b>Website1:</b>{{ account.website1 }}</li>
-		  {% endif %}
-		  {% if account.company %}
-		  <li class="list-group-item"><b>Company:</b>{{ account.company }}</li>
-		  {% endif %}
-		  {% if account.occupation %}
-		  <li class="list-group-item"><b>Occupation:</b>{{ account.occupation }}</li>
-		  {% endif %}
-		  {% if account.introduction %}
-		  <li class="list-group-item"><b>Introduction:</b>{{ account.introduction }}</li>
-		  {% endif %}
-	      </ul>
-	  </aside>
-	  
-	  <article class="col-md-9 col-xs-8 maincontent">
-	      <div class="page-header">
-		<h2 style="display:inline;">{% ifequal language "en-US"%}Account {% else %}账号{% endifequal %}</h2>
-		<small>{% ifequal language "en-US" %}management{% else %}管理{% endifequal %} </small>
-		<button class="btn btn-info btn-xs pull-right" style="" id="btn-edit-account">{% ifequal language "en-US" %}edit{% else %}编辑{% endifequal %}</button>
-	      </div>
-	      <div id="paragraph-content">
+    <div class="row">
+      <aside class="col-md-3 sidebar sidebar-left">
+	<img src="/static/images/man.png" width="160px" class="img-rounded"></img>
+	<h4 class="text-center">{{ user.username }}</h4>
+	<ul class="list-group">
+	  <li class="list-group-item"><b>Email:</b>{{ user.email }}</li>
+	  <li class="list-group-item"><b>Joined:</b>{{ user.date_joined|date:"Y-M-d"|lower }}</li>
+	  {% if account.gender and account.gender != "unclear" %}
+	  <li class="list-group-item"><b>Gender:</b>{{ account.gender }}</li>
+	  {% endif %}
+	  {% if account.country %}
+	  <li class="list-group-item"><b>Country:</b>{{ account.country }}</li>
+	  {% endif %}
+	  {% if account.city %}
+	  <li class="list-group-item"><b>City:</b>{{ account.city }}</li>
+	  {% endif %}
+	  {% if account.location %}
+	  <li class="list-group-item"><b>Location:</b>{{ account.location }}</li>
+	  {% endif %}
+	  {% if account.website1 %}
+	  <li class="list-group-item"><b>Website1:</b>{{ account.website1 }}</li>
+	  {% endif %}
+	  {% if account.company %}
+	  <li class="list-group-item"><b>Company:</b>{{ account.company }}</li>
+	  {% endif %}
+	  {% if account.occupation %}
+	  <li class="list-group-item"><b>Occupation:</b>{{ account.occupation }}</li>
+	  {% endif %}
+	  {% if account.introduction %}
+	  <li class="list-group-item"><b>Introduction:</b>{{ account.introduction }}</li>
+	  {% endif %}
+	</ul>
+      </aside>
+      
+      <article class="col-md-9 col-xs-8 maincontent">
+	<div class="page-header">
+	  <h2 style="display:inline;">{% ifequal language "en-US"%}Account{% else %}账号{% endifequal %}</h2>
+	  <small>{% ifequal language "en-US" %}management{% else %}管理{% endifequal %} </small>
+	  <button class="btn btn-info btn-xs pull-right" style="" id="btn_edit_account" title={% ifequal language "en-US"%}"Edit account"{% else %}编辑账号{% endifequal %}>{% ifequal language "en-US" %}edit{% else %}编辑{% endifequal %}</button>
+	</div>
+	<div id="paragraph-content">
+	</div>
+      </article>
+      <!-- /Article -->
+    </div>
+    <div id="dlg_file" class="modal fade">
+      <div class="modal-dialog">
+	<div class="modal-content">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	    <h4 class="modal-title">project</h4>
+	  </div>
+	  <!-- dialog body -->
+	  <div class="modal-body">
+	    <h4>{% ifequal language "en-US" %}Input new file name:{% else %}请输入新文件名：{% endifequal %}</h4>
+	    <input type="text" class="form-control" id="input_dlg_file" placeholder="file_name, no space between">
+	    <h4>{% ifequal language "en-US" %}Type:{% else %}类型：{% endifequal %}</h4>
+	    <label class="radio">
+	      <input type="radio" name="radio_file_type" id="optionsRadios1" value="sch" checked>*.sch, {% ifequal language "en-US" %}schematic file{% else %}原理图文件，专有格式{% endifequal %}
+	    </label>
+	      <label class="radio">
+		<input type="radio" name="radio_file_type" id="optionsRadios2" value="pcb" >*.pcb, {% ifequal language "en-US" %}pcb file{% else %}PCB文件，专有格式{% endifequal %}
+	      </label>
+	      <label class="radio">
+		<input type="radio" name="radio_file_type" id="optionsRadios3" value="txt" >*.txt, {% ifequal language "en-US" %}plain text file{% else %}文本文件{% endifequal %}
+	      </label>
+	      
+	      <h4>{% ifequal language "en-US" %}Description:{% else %}描述：{% endifequal %}</h4>
+	      <textarea id="input_dlg_file_description" rows="3" class="form-control" name="introduction" placeholder="File description"></textarea>
+	  </div>
+	  <!-- dialog buttons -->
+	  <div class="modal-footer">
+	    <button type="button" class="btn btn-default" data-dismiss="modal">{% ifequal language "en-US" %}Close{% else %}关闭{% endifequal %}</button>
+	    <button type="button" id="btn_dlg_file" class="btn btn-info">{% ifequal language "en-US" %}Create File{% else %}创建新文件{% endifequal %}</button>
+	  </div>
+	</div><!-- modal-content -->
+      </div> <!-- modal-dlg -->
+    </div><!-- dlg_file -->
+    
+    <div id="dlg_project" class="modal fade">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	      <h4 class="modal-title">Project</h4>
+	    </div>
+	    <!-- dialog body -->
+	    <div class="modal-body">
 
-	      </div>
-	  </article>
-      </div>
+	      <h4>{% ifequal language "en-US" %}Input new project name:{% else %}请输入新工程名：{% endifequal %}</h4>
+	      <input type="text" class="form-control" id="input_dlg_project" placeholder="file_name, no space between">
+	    </div>
+	    <!-- dialog buttons -->
+	    <div class="modal-footer">
+	      <button type="button" class="btn btn-default" data-dismiss="modal">{% ifequal language "en-US" %}Close{% else %}关闭{% endifequal %}</button>
+	      <button type="button" id="btn_dlg_project" class="btn btn-info">{% ifequal language "en-US" %}Create Project{% else %}创建工程{% endifequal %}</button>
+	    </div>
+	  </div><!-- modal-content -->
+	</div> <!-- modal-dlg -->
+      </div><!-- dlg_project -->
 
-    <!-- /Article -->
-  </div>
+    
 </div>	<!-- /container -->
 {% endblock body %}
 
@@ -75,6 +128,7 @@
 <script src="/static/js/headroom.min.js"></script>
 <script src="/static/js/jQuery.headroom.min.js"></script>
 <script src="/static/js/template.js"></script>
+<script src="/static/js/underscore.js"></script>
 <script src="/static/js/bs.js"></script>
 <script src="/static/js/bs_account.js"></script>
 <!-- <script src="/static/js/bs_register.js"></script> -->

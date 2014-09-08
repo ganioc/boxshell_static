@@ -1,5 +1,5 @@
 <table id="project-table" class="table table-hover table-striped table-bordered ">
-    <caption style="text-align:left">{% ifequal language "en-US" %}Projects{% else %}项目{% endifequal %}<a href="javascript:void (0)" id="btn_add_project" title={% ifequal language "en-US" %}"Add A Project"{% else %}添加一个工程{% endifequal %} ><span class="glyphicon glyphicon-plus pull-right pull-margin-left"></span></a></caption>
+    <caption style="text-align:left">{% ifequal language "en-US" %}Projects{% else %}项目{% endifequal %}<a href="javascript:void (0)" id="btn_add_project" class="pull-right" title={% ifequal language "en-US" %}"Add A Project"{% else %}"添加一个工程"{% endifequal %} ><span class="glyphicon glyphicon-plus pull-right pull-margin-left" ></span></a></caption>
     {% ifequal language "zh-CN" %}
     <thead>
 	<tr>
@@ -13,19 +13,19 @@
     <thead>
 	<tr>
 	    <th id="first_row"><input type="checkbox" ></input></th>
-	    <th>Project Name</th>
+	    <th>Name</th>
 	    <th>Description</th>
 	    <th>Last Modified</th>
 	</tr>
     </thead>
     {% endifequal %}
-    <tbody id="project-list">
-	{% for project in files %}
+    <tbody id="project_list">
+	{% for project in projects %}
 	<tr>
 	    <td><input type="checkbox"></td>
-	    <td><a href="">{{ project.name }}</a></td>
-	    <td>{{ project.descrip }}</td>
-	    <td>{{ project.modified_date|date:"Y-M-d H:i"}}</td>
+	    <td><a href="javascript:void (0)">{{ project.name }}</a></td>
+	    <td>{{ project.description }}</td>
+	    <td>{{ project.modified_datetime|date:"Y-m-d H:i"}}</td>
 	</tr>
 	{% endfor %}
 	<tr>
