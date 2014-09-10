@@ -1,8 +1,25 @@
 {% extends "drawings/template_bs_drawings.html" %}
 
 {% block body %}
-<h1> Hello! </h1>
-{{ project }}
-{{ file }}
+
+<div class="canvas_container">
+  <canvas id="canvas1" width="640" height="480" class="canvas_sch">No canvas!</canvas>
+  <div class="title">file name</div>
+  <div class="account">account info</div>
+  <div class="gallery" id="gallery_sch"></div>
+  <div class="commandbar"></div>
+</div>
+
 
 {% endblock body %}
+
+{% block script %}
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/headroom.min.js"></script>
+<script src="/static/js/jQuery.headroom.min.js"></script>
+<script src="/static/js/template.js"></script>
+<script src="/static/js/underscore.js"></script>
+<script src="/static/js/sch.js"></script>
+{% endblock script %}
