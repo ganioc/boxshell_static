@@ -11,6 +11,16 @@ else{
   teapot.HOME = "http://www.boxshell.com/";
 }
 
+
+$.fn.textWidth = function(){
+  var html_org = $(this).html();
+  var html_calc = '<span>' + html_org + '</span>';
+  $(this).html(html_calc);
+  var width = $(this).find('span:first').width();
+  $(this).html(html_org);
+  return width;
+};
+
 // recommended method to do animation
 window.requestNextAnimationFrame = 
     (function(){

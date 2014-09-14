@@ -11,9 +11,44 @@ $(window).resize(function(){
 });
 
 // this is to store options, preference of a certain schematic file, working environment
-function Options(){
-    
+function Option(){
+    var background = {
+	"white":"white",
+	"black":"black",
+	"yellow":"yellow",
+	"blue":"blue",
+	"gray":"gray",
+	"green":"green"
+    };
+    var current_bg = "white";
+    var grid_size = 20;
+    var current_block = "";
+    var set_block_color = function(){
+	$("#"+current_block).css("background",background[current_bg]);
+    };
 
+    return {
+	current_bg:function(){
+	    return background[current_bg];
+	},
+	set_current_bg:function(name){
+	    current_bg = name;
+	    set_block_color();
+	},
+	translate_bg:function(name){
+	    return background[name];
+	},
+	init:function(select_name, color, block_name){
+	    var temp = $("#" + select_name);
+	    temp.empty();
+	    for(var k in background){
+		temp.append("<option>" + background[k] + "</option>");
+	    }
+	    current_bg = color ||'white';
+	    current_block = block_name;
+	    set_block_color();
+	}
+    };
 }
 
 function Schematic(info){
@@ -32,7 +67,10 @@ function Schematic(info){
 
     this.info = info;
 }
-
+Schematic.prototype.option = function(opt){
+    this.option = opt;
+    return this;
+};
 Schematic.prototype.init = function(info){
 
     console.log(this.canvas + " init");
@@ -91,6 +129,11 @@ Schematic.prototype.resize = function(w,h){
 };
 Schematic.prototype.set_bg = function(color){
     this.DOM.css("background", color);
+    return this;
+};
+
+Schematic.prototype.get_bg = function(color){
+    return this.option.current_bg();
 };
 
 function Preference(){
@@ -124,10 +167,30 @@ $(document).ready(function() {
 	toggle_glyphicon_down:"glyphicon glyphicon-chevron-down"
     });
     teapot.window_list.push(sch1);
-    sch1.set_bg("papayawhip");
+
+    var temp_option = new Option();
+    temp_option.init("select_bg", null,"lib_background");
+    sch1.option(temp_option)
+	.set_bg(sch1.get_bg());
+
+
 
     $(window).resize();
     $("#input_device").val("");
+
+    $("#cmd_setting").hover(
+	function(){
+	    $(this).children().css("font-size","25px");
+	    
+	},
+	function(){
+	    $(this).children().css("font-size","20px");
+
+	}
+    ).click(function(e){
+	console.log("click setting");
+	$("#setting_dlg").modal("show");
+    });
 
 });
 

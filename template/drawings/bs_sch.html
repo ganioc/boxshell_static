@@ -4,10 +4,37 @@
 
 <div class="canvas_container">
   <canvas id="canvas1" width="640" height="480" class="canvas_sch">No canvas!</canvas>
-  <div class="title">file name</div>
-  <div class="account">account info</div>
+  <div class="title">
+    <a href="javascript:void(0)" id="cmd_setting"><span class="glyphicon glyphicon-cog"></span></a>
+  </div>
+  <div class="account">
+        <a href="javascript:void(0)" id="cmd_setting"><span class="glyphicon glyphicon-cog"></span></a>
+	{{ user.username }}
+  </div>
   <div class="gallery" id="gallery_sch"></div>
-  <div class="commandbar"><a href="javascript:void(0)" id="cmd_toggle_gallery"><span class="glyphicon glyphicon-chevron-down"></span></a></div>
+  <div class="commandbar">
+    <form class="form-inline" role="form">
+      <div class="form-group">
+	<label class="control-label" for="">Library</label>
+	<select class="form-control input-sm">
+	  <option>All</option>
+	  <option>Most Frequent</option>
+	  <option>Abstract Lib</option>
+	  <option>Standard Lib</option>
+	  <option>Extra Lib</option>
+	</select>
+      </div>
+      <div class="form-group">
+	<label class="control-label" for="">Device</label>
+	<input class="form-control input-sm" id="input_device" placeholder="enter device name">
+      </div>
+      <div class="form-group">
+	<a href="javascript:void(0)" id="cmd_toggle_gallery"><span class="glyphicon glyphicon-chevron-up"></span></a>
+      </div>
+
+
+    </form>
+  </div>
 </div>
 
 

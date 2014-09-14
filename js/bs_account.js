@@ -77,6 +77,7 @@ teapot.get_file_name = function(){
 teapot.set_callback = function(){
     $("#btn_edit_account").tooltip();
 
+
     if($("#file_table")){
 
 	// add all callback functions
@@ -88,10 +89,34 @@ teapot.set_callback = function(){
 	    console.log("file be clicked:" + $(this).html());
 	    var filetype = $("#file_list tr td a").parent().next().next().html().trim();
 	    var project = $('ol.breadcrumb li.active').html().trim();
-	    // var temp = $(this).html();
-	    // teapot.load_file(temp.trim());
-	    window.open('/' + filetype  + "/" + project + "/" + $(this).html());
+	    var temp = $(this).html().trim();
+	    var pos = $(this).position();
+	    var width = $(this).textWidth();
+	    console.log(pos);
+	    $("#file_menu").css("top", pos.top).css("left", pos.left + width).show();
+	    var that = this;
+	    $("#file_open").click(function(e){
+		e.preventDefault();
+		console.log("open ----"+ $(that).html().trim());
+		window.open('/' + filetype  + "/" + project + "/" + temp);
+		$("#file_menu").hide();
+	    });
+	    $("#file_edit").click(function(e){
+		$("#file_menu").hide();
+	    });
+	    $("#file_delete").click(function(e){
+		$("#file_menu").hide();
+	    });
 	});
+	$("#file_menu").hover(
+	    function(){
+		console.log("mouse in");
+	    },
+	    function(){
+		console.log("mouse out");
+		$("#file_menu").hide();
+	    }
+	);
     }
 
     // if project in paragraph, 
@@ -133,12 +158,42 @@ teapot.set_callback = function(){
 		
 	    }
 	});
-
+	// add menus and callbacks
 	$("#project_list tr td a").click(function(){
 	    console.log("project be clicked:" + $(this).html());
-	    var temp = $(this).html();
-	    teapot.load_file(temp.trim());
+	    //teapot.load_file(temp.trim());
+	    var temp = $(this).html().trim();
+	    var pos = $(this).position();
+	    var width = $(this).textWidth();
+	    console.log(pos);
+	    $("#project_menu").css("top", pos.top).css("left", pos.left + width).show();
+	    var that = this;
+	    $("#project_open").click(function(e){
+		e.preventDefault();
+		console.log("open ----"+ $(that).html().trim());
+		teapot.load_file(temp);
+		$("#project_menu").hide();
+	    });
+	    $("#project_edit").click(function(e){
+		$("#project_menu").hide();
+	    });
+	    $("#project_delete").click(function(e){
+		$("#project_menu").hide();
+	    });
+	    $("#project_other").click(function(e){
+		$("#project_menu").hide();
+	    });
 	});
+	$("#project_menu").hover(
+	    function(){
+
+		console.log("mouse in");
+	    },
+	    function(){
+		console.log("mouse out");
+		$("#project_menu").hide();
+	    }
+	);
     }
 
     // if account in paragraph,
@@ -265,8 +320,10 @@ teapot.load_file = function(project){
 
 
 $(document).ready(function() {
+
     console.log("begin bs_account function");
     //console.log(document.URL);
+    $("#btn_edit_edit").tooltip();
     
     $("#btn_dlg_file").click(function(e){
 	console.log("leave dlg pressed");
@@ -311,7 +368,10 @@ $(document).ready(function() {
 	teapot.load_account();
 
     });
-
+    $("#btn_edit_lib").click(function(){
+	console.log("edit lib pressed");
+	window.open('/lib/');
+    });
 
     
 });

@@ -1,0 +1,87 @@
+{% extends "drawings/template_bs_drawings.html" %}
+
+{% block body %}
+
+<div class="canvas_container">
+  <canvas id="canvas1" width="640" height="480" class="canvas_sch">No canvas!</canvas>
+  <div class="title">
+    <a href="javascript:void(0)" id="cmd_setting"><span class="glyphicon glyphicon-cog"></span></a>
+  </div>
+  <div class="account">
+	{{ user.username }}
+  </div>
+  <!-- <div class="gallery" id="gallery_sch"></div> -->
+  <!-- <div class="commandbar"> -->
+  <!--   <form class="form-inline" role="form"> -->
+  <!--     <div class="form-group"> -->
+  <!-- 	<label class="control-label" for="">Library</label> -->
+  <!-- 	<select class="form-control input-sm"> -->
+  <!-- 	  <option>All</option> -->
+  <!-- 	  <option>Most Frequent</option> -->
+  <!-- 	  <option>Abstract Lib</option> -->
+  <!-- 	  <option>Standard Lib</option> -->
+  <!-- 	  <option>Extra Lib</option> -->
+  <!-- 	</select> -->
+  <!--     </div> -->
+  <!--     <div class="form-group"> -->
+  <!-- 	<label class="control-label" for="">Device</label> -->
+  <!-- 	<input class="form-control input-sm" id="input_device" placeholder="enter device name"> -->
+  <!--     </div> -->
+  <!--     <div class="form-group"> -->
+  <!-- 	<a href="javascript:void(0)" id="cmd_toggle_gallery"><span class="glyphicon glyphicon-chevron-up"></span></a> -->
+  <!--     </div> -->
+
+
+  <!--   </form> -->
+  <!-- </div> -->
+</div>
+
+<div id="setting_dlg" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Settings</h4>
+      </div>
+      <div class="modal-body">
+	<form class="form-horizontal" role="form">
+	  <div class="form-group">
+	    <label for="select_bg" class="col-sm-4 control-label">Background Color</label>
+	    <div class="col-sm-3">
+	      <select class="form-control input-sm" id="select_bg">
+		<option>white</option>
+	      </select>
+	      
+	      <div id="lib_background"></div>
+	    </div>
+	  </div>
+	  <!-- <div class="form-group"> -->
+	  <!--   <label for="exampleInputFile" class="col-sm-3 control-label">File input</label> -->
+	  <!--   <div class="col-sm-9"> -->
+	  <!--     <input type="file" id="exampleInputFile"> -->
+	  <!--     <p class="help-block">Example block-level help text here.</p> -->
+	  <!--   </div> -->
+	  <!-- </div> -->
+
+	</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% endblock body %}
+
+{% block script %}
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/headroom.min.js"></script>
+<script src="/static/js/jQuery.headroom.min.js"></script>
+<script src="/static/js/template.js"></script>
+<script src="/static/js/underscore.js"></script>
+<script src="/static/js/slib.js"></script>
+{% endblock script %}
