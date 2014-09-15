@@ -13,40 +13,64 @@ $(window).resize(function(){
 // this is to store options, preference of a certain schematic file, working environment
 function Option(){
     var background = {
+	"wallet_notebook":"url(/static/images/sch/notebook_texture2459.jpg)",
+	"wallet_oldpaper":"url(/static/images/sch/paper_texture_dirt.jpg)",
+	"wallet_whitepaper":"url(/static/images/sch/notebook_texture2463.jpg)",
+	"wallet_bluepaper":"url(/static/images/sch/paper_blue.gif)",
+	"wallet_yellowpaper":"url(/static/images/sch/paper_yellow.jpg)",
 	"white":"white",
-	"black":"black",
 	"yellow":"yellow",
 	"blue":"blue",
 	"gray":"gray",
 	"green":"green"
     };
+    var select_control = "";
     var current_bg = "white";
     var grid_size = 20;
     var current_block = "";
-    var set_block_color = function(){
-	$("#"+current_block).css("background",background[current_bg]);
-    };
+    var current_device_color = "black";
 
+    var set_block_color = function(name){
+	$("#"+current_block).css("background",background[name]);
+    };
+    var set_control_option = function(name){
+	teapot.set_select_control(select_control,name);
+    };
+    var set_control_name = function(name){
+	select_control = name;
+    };
+    
+    
     return {
-	current_bg:function(){
-	    return background[current_bg];
+	fun_set_block_color:set_block_color,
+	
+	get_control_name : function(){
+	    return select_control;
+	},
+	get_bg_value:function(value){
+	    return background[value];
+	},
+	get_current_bg:function(){
+	    return current_bg;
 	},
 	set_current_bg:function(name){
 	    current_bg = name;
-	    set_block_color();
+	    set_block_color(name);
+	    set_control_option(name);
 	},
 	translate_bg:function(name){
 	    return background[name];
 	},
 	init:function(select_name, color, block_name){
 	    var temp = $("#" + select_name);
+	    set_control_name(select_name);
 	    temp.empty();
 	    for(var k in background){
-		temp.append("<option>" + background[k] + "</option>");
+		temp.append("<option>" + k + "</option>");
 	    }
 	    current_bg = color ||'white';
 	    current_block = block_name;
-	    set_block_color();
+	    set_block_color(current_bg);
 	}
     };
 }
@@ -66,9 +90,10 @@ function Schematic(info){
     this.init(info);
 
     this.info = info;
+    this.option = {};
 }
-Schematic.prototype.option = function(opt){
-    this.option = opt;
+Schematic.prototype.add_option = function(opt){
+    this.option = _.clone(opt);
     return this;
 };
 Schematic.prototype.init = function(info){
@@ -128,12 +153,18 @@ Schematic.prototype.resize = function(w,h){
     }
 };
 Schematic.prototype.set_bg = function(color){
+    // if color is a jpg
+    // if(color.slice(0,6) == "wallet"){
+    // 	this.DOM.css("background",color);
+    // }
+    // //else
+    // else {
     this.DOM.css("background", color);
     return this;
 };
 
-Schematic.prototype.get_bg = function(color){
-    return this.option.current_bg();
+Schematic.prototype.get_bg = function(){
+    return this.option.get_bg_value(this.option.get_current_bg());
 };
 
 function Preference(){
@@ -169,9 +200,9 @@ $(document).ready(function() {
     teapot.window_list.push(sch1);
 
     var temp_option = new Option();
-    temp_option.init("select_bg", null,"lib_background");
-    sch1.option(temp_option)
-	.set_bg(sch1.get_bg());
+    temp_option.init("select_bg", "wallet_notebook","lib_background");
+    sch1.add_option(temp_option);
+    sch1.set_bg(sch1.get_bg());
 
 
 
@@ -180,16 +211,41 @@ $(document).ready(function() {
 
     $("#cmd_setting").hover(
 	function(){
-	    $(this).children().css("font-size","25px");
-	    
-	},
+	    $(this).children().first().animate({"font-size":'25px'});
+	    },
 	function(){
-	    $(this).children().css("font-size","20px");
-
-	}
-    ).click(function(e){
+	    $(this).children().first().animate({"font-size":"20px"});
+	}).click(function(e){
 	console.log("click setting");
+	// get default color from option
+	var temp = sch1.option;
+	temp.set_current_bg(temp.get_current_bg());
 	$("#setting_dlg").modal("show");
+    });
+
+    // console.log("print out control name");
+    // console.log(sch1.option.get_control_name());
+    
+    $("#select_bg").change(function(){
+	
+    	console.log("changed");
+    	console.log(sch1.option.get_control_name());
+    	sch1.option.fun_set_block_color(
+    	    teapot.get_select_control(sch1.option.get_control_name())	);
+	
+    });
+    $("#option_save").click(function(e){
+	e.preventDefault();
+	if(true){
+	    //save then quit
+	    sch1.option.set_current_bg(teapot.get_select_control(sch1.option.get_control_name()));
+	    sch1.set_bg(sch1.get_bg());
+	    console.log(sch1.get_bg());
+	    $("#setting_dlg").modal("hide");
+	}
+	else{
+	    //display error message
+	}
     });
 
 });

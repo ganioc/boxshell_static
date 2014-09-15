@@ -73,6 +73,18 @@ teapot.read_data = function(myurl, mydata, success_function){
 };
 
 // end of ajax function
+teapot.set_select_control = function(control_name, name){
+    var temp = $("#"+ control_name + " option");
+    temp.filter(function() {
+	//may want to use $.trim in here
+	return $(this).text() == name; 
+    }).prop('selected', true);
+
+};
+teapot.get_select_control = function(control_name){
+    return $("#"+ control_name + " option:selected").text();
+    
+};
 
 teapot.is_command_link = function(str){
     if(str.search('/command/')!== -1){
