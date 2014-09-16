@@ -122,42 +122,13 @@ teapot.set_callback = function(){
     // if project in paragraph, 
     if($("#project_table")){
 
-	$("#btn_add_project").tooltip().click(function(){
+	$("#btn_add_project").tooltip().click(function(e){
+	    e.preventDefault();
 	    console.log("add project");
 	    teapot.get_project_name();
 
 	});
 	
-	$("#btn_dlg_project").click(function(){
-	    
-	    console.log("leave dlg");
-	    var name = $("#input_dlg_project").val().split(/[ ,]+/)[0];
-	    if(name){
-		$("#dlg_project").modal("toggle");
-		// name is the project_name
-		// use ajax to create a project
-		var myurl = "/command/set/";
-		var mydata = {};
-		mydata["name"]="create_project";
-		mydata["content"]= name;
-		teapot.send_data(
-		    myurl,
-		    mydata,
-		    function(responseTxt/* JSON object*/,statusText,xhr){
-			//teapot.load_account();
-			console.log(responseTxt);
-			teapot.load_project();
-		    },
-		    function(xhr,status,error){
-			console.log(error);
-		    }
-		);
-	    }
-	    else{
-		console.log("invalid name");
-		
-	    }
-	});
 	// add menus and callbacks
 	$("#project_list tr td a").click(function(){
 	    console.log("project be clicked:" + $(this).html());
@@ -358,6 +329,37 @@ $(document).ready(function() {
 	    console.log("invalid name");
 	}
     });
+
+    $("#btn_dlg_project").click(function(e){
+	e.preventDefault();
+	console.log("dlg create project");
+	var name = $("#input_dlg_project").val().split(/[ ,]+/)[0];
+	if(name){
+	    $("#dlg_project").modal("hide");
+	    // name is the project_name
+	    // use ajax to create a project
+	    var myurl = "/command/set/";
+	    var mydata = {};
+	    mydata["name"]="create_project";
+	    mydata["content"]= name;
+	    teapot.send_data(
+		myurl,
+		mydata,
+		function(responseTxt/* JSON object*/,statusText,xhr){
+		    //teapot.load_account();
+		    //console.log(responseTxt);
+		    teapot.load_project();
+		},
+		function(xhr,status,error){
+		    console.log(error);
+		}
+	    );
+	}
+	else{
+	    console.log("invalid name");
+	}
+    });
+
 
     // load project info automatically, default behavior
     teapot.load_project();
