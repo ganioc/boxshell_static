@@ -10,12 +10,16 @@ a.blur{
 
 .canvas_sch{
     /* background:url(/static/images/sch/notebook_texture2459.jpg); */
-
+    transition-property:Background;
+    transition-duration:1s;
+    transition-timing-function:ease-in;
 }
 
 
 .canvas_container{
     position:relative;
+    display:block;
+    background:lightgray;
 }
 
 .title{
@@ -72,4 +76,68 @@ a.blur{
     border:1px solid gray;
     box-shadow: 5px 5px 5px #888888;
     border-radius: 10px;
+}
+
+/* .chart div { */
+/*   font: 10px sans-serif; */
+/*   background-color: steelblue; */
+/*   text-align: right; */
+/*   padding: 3px; */
+/*   margin: 1px; */
+/*   color: white; */
+/* } */
+
+/* .chart rect { */
+/*   fill: steelblue; */
+/* } */
+
+/* .chart text { */
+/*   fill: white; */
+/*   font: 10px sans-serif; */
+/*   text-anchor: end; */
+/* } */
+
+text {
+  font: bold 48px monospace;
+}
+
+.enter {
+  fill: green;
+}
+
+.update {
+  fill: #333;
+}
+
+svg {
+  font: 10px sans-serif;
+}
+
+.bar rect {
+  fill: steelblue;
+}
+
+.bar:hover rect {
+  fill: red;
+}
+
+.value {
+  fill: white;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.axis path {
+  stroke: none;
+}
+
+.x.axis line {
+  stroke: #fff;
+  stroke-opacity: .8;
+}
+
+.y.axis path {
+  stroke: black;
 }

@@ -1,0 +1,116 @@
+{% extends "drawings/template_bs_drawings.html" %}
+
+{% block body %}
+<div id="frame_block" class="canvas_container">
+    <svg width="15cm" height="15cm" id="svg_root" xmlns="http://www.w3.org/2000/svg"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<svg x="300">
+	    <rect x="10" y="10" height="100" width="100"
+		  style="stroke:#ff0000; fill: #0000ff"></rect>
+	    <polyline points="0,0  30,0  15,30"
+		      style="stroke:#006600;"></polyline>
+	    <polyline points="10,2  60,2  35,52"
+		      style="stroke:#006600; stroke-width: 2;
+		      fill: #33cc33;"></polyline>
+	    <path d="M50,50
+		  A30,30 0 0,1 35,20
+		  L100,100
+		  M110,110
+		  L100,0"
+		  style="stroke:#660000; fill:none;">    </path>
+	    <text x="20" y="40">Example SVG text 1</text>
+	    <image x="200" y="200" width="300" height="80"
+		   xlink:href="http://jenkov.com/images/layout/top-bar-logo.png" ></image>
+	</svg>
+	<svg x="150">
+	    <rect x="10" y="10" height="100" width="100"
+		  style="stroke:#009900; 
+		  fill: #00cc00;
+		  stroke-width:3;
+		  stroke-dasharray:10 5;"
+		  >
+		<animateTransform
+		    attributeName="transform"
+		    begin="0s"
+		    dur="20s"
+		    type="rotate"
+		    from="0 60 60"
+		    to="360 60 60"
+		    repeatCount="indefinite" ></animatetransform>
+	    </rect>
+		<circle cx="40" cy="40" r="24" style="stroke:#006600; fill:#00cc00 fill:#234555"/>
+	</svg>
+	<svg x="150" y="150">
+	    <g transform="rotate(45 50 50)">
+		<line x1="10" y1="10" x2="85" y2="10"
+		      style="stroke: #006600;"/>
+
+		<rect x="10" y="20" height="50" width="75" rx="10" ry="10"
+			  style="stroke: #006600; fill: #223333"/>
+
+			<text x="30" y="90" style="stroke: #660000; fill: #660000">
+			    Text grouped with shapes</text>
+			<line x1="0"  y1="10" x2="0"   y2="100" style="stroke:#006600;"/>
+			    <line x1="10" y1="10" x2="100" y2="100" style="stroke:#006600;"/>
+				<line x1="20" y1="10" x2="100" y2="50"  style="stroke:#006600;"/>
+				    <line x1="30" y1="10" x2="110" y2="10"  style="stroke:#006600;"/>
+	    </g>
+	</svg>
+    </svg>
+</div>
+
+<div class="account">
+    {{ user.username }}
+</div>
+
+<div id="setting_dlg" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Settings</h4>
+      </div>
+      <div class="modal-body">
+	<form class="form-horizontal" role="form">
+	  <div class="form-group">
+	    <label for="select_bg" class="col-sm-4 control-label">Background Color</label>
+	    <div class="col-sm-5">
+	      <select class="form-control input-sm" id="select_bg">
+		<option>white</option>
+	      </select>
+	      
+	      <div id="lib_background"></div>
+	    </div>
+	  </div>
+	  <!-- <div class="form-group"> -->
+	  <!--   <label for="exampleInputFile" class="col-sm-3 control-label">File input</label> -->
+	  <!--   <div class="col-sm-9"> -->
+	  <!--     <input type="file" id="exampleInputFile"> -->
+	  <!--     <p class="help-block">Example block-level help text here.</p> -->
+	  <!--   </div> -->
+	  <!-- </div> -->
+
+	</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="option_save">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% endblock body %}
+
+{% block script %}
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/headroom.min.js"></script>
+<script src="/static/js/jQuery.headroom.min.js"></script>
+<script src="/static/js/template.js"></script>
+<script src="/static/js/underscore.js"></script>
+<script src="/static/js/d3.min.js" charset="utf-8"></script>
+<script src="/static/js/bs.js"></script>
+<script src="/static/js/newslib.js"></script>
+{% endblock script %}

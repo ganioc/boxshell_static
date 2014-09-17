@@ -18,11 +18,11 @@ function Option(){
 	"wallet_whitepaper":"url(/static/images/sch/notebook_texture2463.jpg)",
 	"wallet_bluepaper":"url(/static/images/sch/paper_blue.gif)",
 	"wallet_yellowpaper":"url(/static/images/sch/paper_yellow.jpg)",
-	"white":"white",
-	"yellow":"yellow",
-	"blue":"blue",
-	"gray":"gray",
-	"green":"green"
+	"white":"aliceblue",
+	"yellow":"lightyellow",
+	"blue":"lavender",
+	"gray":"ghostwhite",
+	"green":"lightcyan"
     };
     var select_control = "";
     var current_bg = "white";

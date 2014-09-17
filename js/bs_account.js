@@ -294,7 +294,6 @@ $(document).ready(function() {
 
     console.log("begin bs_account function");
     //console.log(document.URL);
-    $("#btn_edit_edit").tooltip();
     
     $("#btn_dlg_file").click(function(e){
 	console.log("leave dlg pressed");
@@ -370,11 +369,20 @@ $(document).ready(function() {
 	teapot.load_account();
 
     });
-    $("#btn_edit_lib").click(function(){
-	console.log("edit lib pressed");
-	window.open('/lib/');
-    });
+    //$("#btn_edit_lib").tooltip();
+    //$("#btn_new_edit_lib").tooltip();
 
+    $("#btn_edit_lib").tooltip()
+	.click(function(){
+	    console.log("edit lib pressed");
+	    window.open('/lib/');
+	});
+    
+    $("#btn_new_edit_lib").tooltip()
+	.click(function(){
+	    console.log("new edit lib pressed");
+	    window.open('/newlib/');
+	});
     
 });
 
