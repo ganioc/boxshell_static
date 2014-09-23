@@ -141,3 +141,14 @@ svg {
 .y.axis path {
   stroke: black;
 }
+
+circle {
+        stroke:black;
+        stroke-width:1px;
+        fill:MediumSeaGreen;
+        opacity:0.5;
+}
+
+.node {
+  stroke-width: 1.5px;
+}
