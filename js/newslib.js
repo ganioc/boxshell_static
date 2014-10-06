@@ -4,39 +4,36 @@
 var teapot = teapot||{};
 var width,height;
 
+
+
 $(document).ready(function() {
     console.log("begin new lib function");
     //console.log(document.URL);
+    width = window.innerWidth;
+    height = window.innerHeight;
 
     // hide the scrollbar on windows
     $('body').css("overflow","hidden");
 
-    $(window).resize(function(){
+    $(window).resize(
+	resize_cb
+    );
 
-	width = window.innerWidth;
-	height = window.innerHeight;
 
-	$("#frame_block").css("width",window.innerWidth)
-	.css("height",window.innerHeight);
+    
 
-	$("#svg_root").attr("width",window.innerWidth + "px")
-	.attr("height", window.innerHeight + "px");
-
-    });
-
-    $(window).resize();
-
-    // 
     var fill = d3.scale.category10();
 
-    var nodes = d3.range(100).map(function(i) {
+    var nodes = d3.range(50).map(function(i) {
 	return {index: i};
     });
+
     var force = d3.layout.force()
-    .nodes(nodes)
-    .size([width, height])
-    .on("tick", tick)
-    .start();
+	    .nodes(nodes)
+	    .size([width, height])
+	    .on("tick", tick)
+	    .start();
+
 
     var svg = d3.select("svg")
 	    .attr("width", width)
@@ -54,6 +51,7 @@ $(document).ready(function() {
 	    .call(force.drag)
 	    .on("mousedown", function() { d3.event.stopPropagation(); });
     
+
     svg.style("opacity", 1e-6)
 	.transition()
 	.duration(1000)
@@ -61,6 +59,8 @@ $(document).ready(function() {
 
     d3.select("body")
 	.on("mousedown", mousedown);
+
+    $(window).resize();
 
     function tick(e) {
 
@@ -76,6 +76,10 @@ $(document).ready(function() {
     }
 
     function mousedown() {
+	force.size([width, height]);
+	svg.attr("width", width)
+	    .attr("height", height);
+
 	nodes.forEach(function(o, i) {
 	    o.x += (Math.random() - .5) * 40;
 	    o.y += (Math.random() - .5) * 40;
@@ -83,6 +87,19 @@ $(document).ready(function() {
 	force.resume();
     }   
 
+    function resize_cb(){
+	width = window.innerWidth;
+	height = window.innerHeight;
+
+	$("#frame_block").css("width",window.innerWidth)
+	.css("height",window.innerHeight);
+
+	$("#svg_root").attr("width",window.innerWidth + "px")
+	.attr("height", window.innerHeight + "px");
+
+	mousedown();
+
+    }
 });
 
 
