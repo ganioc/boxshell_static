@@ -145,10 +145,20 @@ svg {
 circle {
         stroke:black;
         stroke-width:1px;
-        fill:MediumSeaGreen;
+        fill:yellow;
         opacity:0.5;
 }
 
 .node {
+  stroke-width: 3px;
+  cursor: move;
+  fill: yellow;
+  stroke: #000;
+}
+.node.fixed {
+  fill: #f00;
+}
+.link {
+  stroke: #000;
   stroke-width: 1.5px;
 }
