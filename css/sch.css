@@ -15,13 +15,20 @@ a.blur{
     transition-timing-function:ease-in;
 }
 
+#frame_block{
+    margin-top:40px;
+    width:100%;
 
+}
 .canvas_container{
     position:relative;
     display:block;
-    background:lightgray;
 }
 
+#chart{
+    display:block;
+    text-align:center;
+}
 .title{
     position:absolute;
     top:10px;
@@ -78,87 +85,28 @@ a.blur{
     border-radius: 10px;
 }
 
-/* .chart div { */
-/*   font: 10px sans-serif; */
-/*   background-color: steelblue; */
-/*   text-align: right; */
-/*   padding: 3px; */
-/*   margin: 1px; */
-/*   color: white; */
-/* } */
-
-/* .chart rect { */
-/*   fill: steelblue; */
-/* } */
-
-/* .chart text { */
-/*   fill: white; */
-/*   font: 10px sans-serif; */
-/*   text-anchor: end; */
-/* } */
-
-text {
-  font: bold 48px monospace;
-}
-
-.enter {
-  fill: green;
-}
-
-.update {
-  fill: #333;
-}
-
-svg {
-  font: 10px sans-serif;
-}
-
-.bar rect {
-  fill: steelblue;
-}
-
-.bar:hover rect {
-  fill: red;
-}
-
-.value {
-  fill: white;
-}
-
-.axis {
-  shape-rendering: crispEdges;
-}
-
-.axis path {
-  stroke: none;
-}
-
-.x.axis line {
-  stroke: #fff;
-  stroke-opacity: .8;
-}
-
-.y.axis path {
-  stroke: black;
-}
-
-circle {
-        stroke:black;
-        stroke-width:1px;
-        fill:yellow;
-        opacity:0.5;
-}
-
 .node {
-  stroke-width: 3px;
-  cursor: move;
-  fill: yellow;
-  stroke: #000;
+  cursor: pointer;
 }
-.node.fixed {
-  fill: #f00;
-}
-.link {
+
+.node:hover {
   stroke: #000;
   stroke-width: 1.5px;
 }
+
+.node--leaf {
+  fill: white;
+}
+
+.label {
+  font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-anchor: middle;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+}
+
+.label,
+.node--root,
+.node--leaf {
+  pointer-events: none;
+}
+

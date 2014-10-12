@@ -160,10 +160,10 @@ $(document).ready(function() {
 	svg.attr("width", width)
 	    .attr("height", height);
 
-	nodes.forEach(function(o, i) {
-	    o.x += (Math.random() - .5) * 40;
-	    o.y += (Math.random() - .5) * 40;
-	});
+	// nodes.forEach(function(o, i) {
+	//     o.x += (Math.random() - .5) * 40;
+	//     o.y += (Math.random() - .5) * 40;
+	// });
 	force.resume();
     }   
 
