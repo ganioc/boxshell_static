@@ -1,0 +1,19 @@
+.red {
+  color: red; }
+
+.fab_text {
+  color: #336699;
+  font-size: 2em; }
+
+.infobox {
+  width: 200px; }
+  .infobox .message {
+    border: 1px solid red; }
+    .infobox .message .tilte {
+      color: red; }
+  .infobox .user {
+    border: 2px solid black; }
+    .infobox .user .title {
+      color: black; }
+
+/*# sourceMappingURL=test.css.map */

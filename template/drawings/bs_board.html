@@ -1,0 +1,30 @@
+{% extends "drawings/template_bs_board.html" %}
+
+{% block head-css %}
+<!-- specific css definition for webapp -->
+
+{% endblock head-css %}
+
+{% block body %}
+
+<div id="pages">
+    <section id="menu" class="current">
+	<h1>Hello my friend!</h1>
+    </section>
+    <section id="game"></section>
+    <section id="help"></section>
+</div>
+{% endblock body %}
+
+{% block script %}
+
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/headroom.min.js"></script>
+<script src="/static/js/jQuery.headroom.min.js"></script>
+<script src="/static/js/template.js"></script>
+<script src="/static/js/underscore.js"></script>
+<script src="/static/js/d3.min.js" charset="utf-8"></script>
+<script src="/static/js/board.js" charset="utf-8"></script>
+{% endblock script %}

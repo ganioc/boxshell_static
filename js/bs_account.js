@@ -383,7 +383,11 @@ $(document).ready(function() {
 	    console.log("new edit lib pressed");
 	    window.open('/newlib/');
 	});
-    
+    $("#btn_new_board").tooltip()
+	.click(function(){
+	    console.log("new board pressed");
+	    window.open('/newboard/');
+	});
 });
 
 

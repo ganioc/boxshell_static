@@ -1,0 +1,21 @@
+/* Defining a "Chewy" font linked to Chewy.ttf */
+@font-face {
+    src: url(Chewy.ttf);
+    font-family: Chewy;
+}
+/* Using the "Chewy" font */
+body {
+    font-family: Chewy, arial, serif;
+    background: black; 
+    color: white; 
+    overflow: hidden; 
+    padding: 0; 
+    margin: 0; 
+    font-size: 30px; 
+}
+
+a, canvas, *{
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-touch-callout: none;
+}
