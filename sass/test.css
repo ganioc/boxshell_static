@@ -1,19 +1,53 @@
+body {
+  background: #369;
+}
+
 .red {
-  color: red; }
+  color: red;
+}
 
 .fab_text {
   color: #336699;
-  font-size: 2em; }
+  font-size: 2em;
+}
 
 .infobox {
-  width: 200px; }
-  .infobox .message {
-    border: 1px solid red; }
-    .infobox .message .tilte {
-      color: red; }
-  .infobox .user {
-    border: 2px solid black; }
-    .infobox .user .title {
-      color: black; }
+  width: 200px;
+}
+.infobox .message {
+  border: 1px solid red;
+}
+.infobox .message .tilte {
+  color: red;
+}
+.infobox .user {
+  border: 2px solid black;
+}
+.infobox .user .title {
+  color: black;
+}
+
+.blue_button, .checkout-button {
+  background: #336699;
+  font-weight: bold;
+  color: white;
+  padding: 5px;
+}
+
+.tom_picture {
+  background-image: url("/image/tom.jpg");
+}
+
+.john_picture {
+  background-image: url("/image/john.jpg");
+}
+
+.colin_picture {
+  background-image: url("/image/colin.jpg");
+}
+
+.phil_picture {
+  background-image: url("/image/phil.jpg");
+}
 
 /*# sourceMappingURL=test.css.map */

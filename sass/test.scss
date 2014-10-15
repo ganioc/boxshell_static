@@ -1,3 +1,12 @@
+$primary_color:#369;
+$secondary_color:#eee;
+$page_width:300px;
+
+body{
+	background: $primary_color;
+	
+	}
+
 .red {
 	color:red;}
 .fab_text{
@@ -14,6 +23,22 @@
 		border:2px solid black;
 			.title{
 				color:black;}}}
+
+.blue_button {
+background: #336699;
+font-weight: bold;
+color: white;
+padding: 5px; }
+
+.checkout-button{
+	@extend .blue_button 
+}
+
+@each $member in tom, john, colin, phil{
+	.#{$member}_picture{
+		background-image: url("/image/#{$member}.jpg");
+	}
+}
 
 
 	
