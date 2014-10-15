@@ -1,0 +1,23 @@
+@font-face {
+  src: url(Chewy.ttf);
+  font-faily: Chewy; }
+html {
+  background: #000;
+  color: #fff; }
+
+body {
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
+  font-family: Chewy, arial, serif; }
+
+a, * {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none; }
+
+/*# sourceMappingURL=board.css.map */
