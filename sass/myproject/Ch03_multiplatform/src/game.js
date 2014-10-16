@@ -23,7 +23,7 @@ ns.Storage = function() {
       return !! localStorage.getItem(gameKey);
     },
     appNeverLaunched: function(){ return appNeverLaunched; }
-  }
+  };
 }();
 
 
@@ -129,7 +129,15 @@ ns.Storage = function() {
 
 
   // light event system from https://gist.github.com/1000193
-  var Event = (function(_){return{pub:function(a,b,c,d){for(d=-1,c=[].concat(_[a]);c[++d];)c[d](b)},sub:function(a,b){(_[a]||(_[a]=[])).push(b)}}})({})
+  var Event = (function(_)
+	       {return{
+		   pub:function(a,b,c,d)
+		   {for(d=-1,c=[].concat(_[a]);c[++d];)
+		    c[d](b);
+		   },
+		   sub:function(a,b){(_[a]||(_[a]=[])).push(b);
+				    }}
+	       })({});
 
   var uuid = (function(num){
     return function(){ return ++num; }

@@ -1,21 +1,77 @@
-/* Defining a "Chewy" font linked to Chewy.ttf */
 @font-face {
-    src: url(Chewy.ttf);
-    font-family: Chewy;
-}
-/* Using the "Chewy" font */
-body {
-    font-family: Chewy, arial, serif;
-    background: black; 
-    color: white; 
-    overflow: hidden; 
-    padding: 0; 
-    margin: 0; 
-    font-size: 30px; 
-}
+  src: url(Chewy.ttf);
+  font-faily: Chewy; }
+html {
+  background: #000;
+  color: #fff; }
 
-a, canvas, *{
-    user-select: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-touch-callout: none;
-}
+body {
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
+  font-family: Chewy, arial, serif; }
+
+a, * {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none; }
+
+#pages.enableTransition > section {
+  -moz-transition-duration: 1.5s, 0s;
+  -o-transition-duration: 1.5s, 0s;
+  -webkit-transition-duration: 1.5s, 0s;
+  transition-duration: 1.5s, 0s;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out; }
+#pages > section {
+  background: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-transition-delay: 0s, 2s;
+  -o-transition-delay: 0s, 2s;
+  -webkit-transition-delay: 0s, 2s;
+  transition-delay: 0s, 2s;
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  -o-transition-property: -o-transform, opacity;
+  transition-property: transform, opacity;
+  -moz-transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  clear: both;
+  z-index: -1;
+  opacity: 0; }
+  #pages > section.current {
+    -moz-transition-delay: 0s, 0s;
+    -o-transition-delay: 0s, 0s;
+    -webkit-transition-delay: 0s, 0s;
+    transition-delay: 0s, 0s;
+    -moz-transform: translate3d(0%, 0, 0);
+    -webkit-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+    z-index: 0;
+    opacity: 1; }
+  #pages > section.current ~ section {
+    z-index: -1;
+    opacity: 0;
+    -moz-transition-delay: 0s, 2s;
+    -o-transition-delay: 0s, 2s;
+    -webkit-transition-delay: 0s, 2s;
+    transition-delay: 0s, 2s;
+    -moz-transform: translate3d(100%, 0, 0);
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0); }
+
+
