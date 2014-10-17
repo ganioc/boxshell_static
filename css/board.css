@@ -2,12 +2,12 @@
   src: url(Chewy.ttf);
   font-faily: Chewy; }
 html {
-  background: #000;
-  color: #fff; }
+  background: #fff;
+  color: #000; }
 
 body {
-  background: #000;
-  color: #fff;
+  background: #fff;
+  color: #000;
   overflow: hidden;
   padding: 0;
   margin: 0;
@@ -21,16 +21,16 @@ a, * {
   -webkit-touch-callout: none; }
 
 #pages.enableTransition > section {
-  -moz-transition-duration: 1.5s, 0s;
-  -o-transition-duration: 1.5s, 0s;
-  -webkit-transition-duration: 1.5s, 0s;
-  transition-duration: 1.5s, 0s;
-  -moz-transition-timing-function: ease-in-out;
-  -o-transition-timing-function: ease-in-out;
-  -webkit-transition-timing-function: ease-in-out;
-  transition-timing-function: ease-in-out; }
+  -moz-transition-duration: 1s, 0s;
+  -o-transition-duration: 1s, 0s;
+  -webkit-transition-duration: 1s, 0s;
+  transition-duration: 1s, 0s;
+  -moz-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in; }
 #pages > section {
-  background: #000;
+  background: #fff;
   position: absolute;
   top: 0;
   left: 0;
@@ -47,13 +47,13 @@ a, * {
   -moz-transition-property: -moz-transform, opacity;
   -o-transition-property: -o-transform, opacity;
   transition-property: transform, opacity;
-  -moz-transform: translate3d(-100%, 0, 0);
-  -webkit-transform: translate3d(-100%, 0, 0);
-  transform: translate3d(-100%, 0, 0);
+  -moz-transform: translate3d(-100%, -200%, 0);
+  -webkit-transform: translate3d(-100%, -200%, 0);
+  transform: translate3d(-100%, -200%, 0);
   clear: both;
   z-index: -1;
   opacity: 0; }
-  #pages > section.current {
+  #pages > section.center {
     -moz-transition-delay: 0s, 0s;
     -o-transition-delay: 0s, 0s;
     -webkit-transition-delay: 0s, 0s;
@@ -63,7 +63,17 @@ a, * {
     transform: translate3d(0%, 0, 0);
     z-index: 0;
     opacity: 1; }
-  #pages > section.current ~ section {
+  #pages > section.west {
+    z-index: -1;
+    opacity: 0;
+    -moz-transition-delay: 0s, 2s;
+    -o-transition-delay: 0s, 2s;
+    -webkit-transition-delay: 0s, 2s;
+    transition-delay: 0s, 2s;
+    -moz-transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0); }
+  #pages > section.east {
     z-index: -1;
     opacity: 0;
     -moz-transition-delay: 0s, 2s;
@@ -73,5 +83,65 @@ a, * {
     -moz-transform: translate3d(100%, 0, 0);
     -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0); }
+  #pages > section.north {
+    z-index: -1;
+    opacity: 0;
+    -moz-transition-delay: 0s, 2s;
+    -o-transition-delay: 0s, 2s;
+    -webkit-transition-delay: 0s, 2s;
+    transition-delay: 0s, 2s;
+    -moz-transform: translate3d(0, -100%, 0);
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0); }
+  #pages > section.south {
+    z-index: -1;
+    opacity: 0;
+    -moz-transition-delay: 0s, 2s;
+    -o-transition-delay: 0s, 2s;
+    -webkit-transition-delay: 0s, 2s;
+    transition-delay: 0s, 2s;
+    -moz-transform: translate3d(0, 100%, 0);
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0); }
+  #pages > section.west-north {
+    z-index: -1;
+    opacity: 0;
+    -moz-transition-delay: 0s, 2s;
+    -o-transition-delay: 0s, 2s;
+    -webkit-transition-delay: 0s, 2s;
+    transition-delay: 0s, 2s;
+    -moz-transform: translate3d(-100%, -100%, 0);
+    -webkit-transform: translate3d(-100%, -100%, 0);
+    transform: translate3d(-100%, -100%, 0); }
+  #pages > section.west-south {
+    z-index: -1;
+    opacity: 0;
+    -moz-transition-delay: 0s, 2s;
+    -o-transition-delay: 0s, 2s;
+    -webkit-transition-delay: 0s, 2s;
+    transition-delay: 0s, 2s;
+    -moz-transform: translate3d(-100%, 100%, 0);
+    -webkit-transform: translate3d(-100%, 100%, 0);
+    transform: translate3d(-100%, 100%, 0); }
+  #pages > section.east-north {
+    z-index: -1;
+    opacity: 0;
+    -moz-transition-delay: 0s, 2s;
+    -o-transition-delay: 0s, 2s;
+    -webkit-transition-delay: 0s, 2s;
+    transition-delay: 0s, 2s;
+    -moz-transform: translate3d(100%, -100%, 0);
+    -webkit-transform: translate3d(100%, -100%, 0);
+    transform: translate3d(100%, -100%, 0); }
+  #pages > section.east-south {
+    z-index: -1;
+    opacity: 0;
+    -moz-transition-delay: 0s, 2s;
+    -o-transition-delay: 0s, 2s;
+    -webkit-transition-delay: 0s, 2s;
+    transition-delay: 0s, 2s;
+    -moz-transform: translate3d(100%, 100%, 0);
+    -webkit-transform: translate3d(100%, 100%, 0);
+    transform: translate3d(100%, 100%, 0); }
 
 

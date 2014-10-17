@@ -26,18 +26,97 @@ var width,height;
     u.Controller = function(){
 	var scene = function(name){
 	    var section = $("#" + name);
-	    section.addClass('current').siblings().removeClass("current");
+	    section.addClass('center').siblings().removeClass("center");
 	    //return undefined;
 	};
+	var _set_pos = function(name,pos){
+		var section = $("#" + name);
+		section.removeClass();
+		section.addClass(pos);
+	};
+	var _set_content = function(name,txt){
+	    var section = $("#" + name);
+	    section.empty();
+	    section.append(txt);
+	};
+	var _POS = {"west-north":0,
+		   "north":1,
+		   "east-north":2,
+		   "west":3,
+		   "center":4,
+		   "east":5,
+		   "west-south":6,
+		   "south":7,
+		   "east-south":8};
+	var _CONTENT = {
+	    "0":"",
+	    "1":"",
+	    "2":"",
+	    "3":"",
+	    "4":"",
+	    "5":"",
+	    "6":"",
+	    "7":"",
+	    "8":""
+	};
 	return {
-	    init:function(){},
+	    set_content:_set_content,
+	    POS:_POS,
+	    init:function(name){
+		var obj = $("#"+name);
+		var sectionList=[
+		    '<section class='+ '\"west-north\">' + '</section>',
+		    '<section class='+ '\"north\">' + '</section>',
+		    '<section class='+ '\"east-north\">' + '</section>',
+		    '<section class='+ '\"west\">' + '</section>',
+		    '<section class='+ '\"center\">' + '</section>',
+		    '<section class='+ '\"east\">' + '</section>',
+		    '<section class='+ '\"west-south\">' + '</section>',
+		    '<section class='+ '\"south\">' + '</section>',
+		    '<section class='+ '\"east-south\">' + '</section>'
+		];
+
+		for(var i=0;i<9;i++){
+		    var e=$(sectionList[i]);
+		    e.attr("id","section"+ i);
+		    obj.append(e);
+		}
+		_set_content("section4",'<h1>Hello center!</h1><ul><li><a href=\"#!/sch/lib/\">To symbol browser</a></li><li><a href=\"#!/sch/pcb/\">To PCB editor</a></li></ul>');
+		_set_content("section3",'<h1>Hello symbol browser!</h1><a href=\"#!/lib/sch/\">Back to schematic editor</a>');
+		_set_content("section5",'<h1>Hello PCB editor!</h1><a href=\"#!/pcb/sch/\">Back to schematic editor</a>');
+	    },
 	    show:function(path){
 		if(path == "/")
-		    scene("menu");
-		else if(path =="/game/")
-		    scene("game");
-		else if(path === "/help/")
-		    scene("help");
+		    scene("");
+		else if(path =="/sch/lib/"){
+		    _set_pos("section0","north");
+		    _set_pos("section3","center");
+		    _set_pos("section4","east");
+		}
+		else if(path =="/sch/pcb/"){
+		    _set_pos("section2","north");
+		    _set_pos("section5","center");
+		    _set_pos("section4","west");
+		}
+		else if(path === "/lib/sch/"){
+		    _set_pos("section0","west-north");
+		    _set_pos("section3","west");
+		    _set_pos("section4","center");
+		}
+		else if(path === "/pcb/sch/"){
+		    _set_pos("section2","east-north");
+		    _set_pos("section5","east");
+		    _set_pos("section4","center");
+		}
+	    },
+	    set_pos:_set_pos,
+	    switch_pos:function(inid,indirecion,outid,outdirecion){
+		var inobject = $("#"+inid),
+		    outobject = $("#" +outid);
+		_set_pos(inid,indirecion);
+		_set_pos(outid,outdirecion);
+		
+
 	    }
 	};
     }();
@@ -52,6 +131,9 @@ $(document).ready(function() {
     console.log(u.version);
     console.log(u.readname);
 
+
+    u.Controller.init("pages");//init the sections
+
     $(window).bind("hashchange", function(){
 	console.log(location.hash);
 	u.Controller.show(!location.hash?"/":location.hash.replace('#!',''));
@@ -61,12 +143,14 @@ $(document).ready(function() {
     setTimeout(function(){
 	$('#pages').addClass('enableTransition');
     }, 500);
-    u.Controller.show("/");
+    //u.Controller.show("/");
+
+    u.Controller.set_pos("sch-editor","center");
+    u.Controller.set_pos("symbol-lib", "west");
+    u.Controller.set_pos("symbol-editor","east");
+    
 
 });
-
-
-
 
 
 

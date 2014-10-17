@@ -1,8 +1,10 @@
 @import "compass";
 
-$background_color:#000;
-$font_color:#fff;
-$page_switch_duration:1.5;
+$background_color:#fff;
+$font_color:#000;
+$page_switch_duration:1.0;
+$page_switch_function:ease-in;
+//cubic-bezier(0.175, 0.885, 0.880, 1.465);
 
 @font-face{
     src:url(Chewy.ttf);
@@ -30,7 +32,7 @@ a , *{
 #pages{
     &.enableTransition > section{
 	@include transition-duration(($page_switch_duration + s,0s));
-	@include transition-timing-function(ease-in-out);
+	@include transition-timing-function(#{$page_switch_function});
     }
     > section{
 	background:$background_color;
@@ -45,21 +47,63 @@ a , *{
 	-moz-transition-property: -moz-transform, opacity;
 	-o-transition-property: -o-transform, opacity;
 	transition-property: transform, opacity;
-	@include translate3d(-100%, 0, 0);
+	@include translate3d(-100%, -200%, 0);
 	clear: both;
 	z-index: -1;
 	opacity: 0;
-	&.current{
+	&.center{
 	    @include transition-delay((0s, 0s));
 	    @include translate3d(0%, 0, 0);
 	    z-index: 0;
 	    opacity: 1;
 	}
-	&.current ~ section{
+	&.west{
+	    z-index: -1;
+	    opacity: 0;
+	    @include transition-delay((0s, 2s));
+	    @include translate3d(-100%, 0, 0);
+	}
+	&.east{
 	    z-index: -1;
 	    opacity: 0;
 	    @include transition-delay((0s, 2s));
 	    @include translate3d(100%, 0, 0);
+	}
+	&.north{
+	    z-index: -1;
+	    opacity: 0;
+	    @include transition-delay((0s, 2s));
+	    @include translate3d(0,-100%, 0);
+	}
+	&.south{
+	    z-index: -1;
+	    opacity: 0;
+	    @include transition-delay((0s, 2s));
+	    @include translate3d(0, 100%, 0);
+	}
+	&.west-north{
+	    z-index: -1;
+	    opacity: 0;
+	    @include transition-delay((0s, 2s));
+	    @include translate3d(-100%, -100%, 0);
+	}
+	&.west-south{
+	    z-index: -1;
+	    opacity: 0;
+	    @include transition-delay((0s, 2s));
+	    @include translate3d(-100%, 100%, 0);
+	}
+	&.east-north{
+	    z-index: -1;
+	    opacity: 0;
+	    @include transition-delay((0s, 2s));
+	    @include translate3d(100%, -100%, 0);
+	}
+	&.east-south{
+	    z-index: -1;
+	    opacity: 0;
+	    @include transition-delay((0s, 2s));
+	    @include translate3d(100%, 100%, 0);
 	}
     }
     
