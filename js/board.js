@@ -48,17 +48,7 @@ var width,height;
 		   "west-south":6,
 		   "south":7,
 		   "east-south":8};
-	var _CONTENT = {
-	    "0":"",
-	    "1":"",
-	    "2":"",
-	    "3":"",
-	    "4":"",
-	    "5":"",
-	    "6":"",
-	    "7":"",
-	    "8":""
-	};
+
 	return {
 	    set_content:_set_content,
 	    POS:_POS,
@@ -81,16 +71,21 @@ var width,height;
 		    e.attr("id","section"+ i);
 		    obj.append(e);
 		}
-		_set_content("section4",'<h1>Hello center!</h1><ul><li><a href=\"#!/sch/lib/\">To symbol browser</a></li><li><a href=\"#!/sch/pcb/\">To PCB editor</a></li></ul>');
-		_set_content("section3",'<h1>Hello symbol browser!</h1><a href=\"#!/lib/sch/\">Back to schematic editor</a>');
-		_set_content("section5",'<h1>Hello PCB editor!</h1><a href=\"#!/pcb/sch/\">Back to schematic editor</a>');
+		for(i=0;i<9;i++){
+		    var div = $("#s" + i);
+		    if(div.html()){
+			_set_content("section" + i, div.html());
+			div.empty();
+		    }
+		}
 	    },
 	    show:function(path){
 		if(path == "/")
-		    scene("");
+		    console.log("It should never happen.");
 		else if(path =="/sch/lib/"){
 		    _set_pos("section0","north");
 		    _set_pos("section3","center");
+		    
 		    _set_pos("section4","east");
 		}
 		else if(path =="/sch/pcb/"){
@@ -101,6 +96,7 @@ var width,height;
 		else if(path === "/lib/sch/"){
 		    _set_pos("section0","west-north");
 		    _set_pos("section3","west");
+		    
 		    _set_pos("section4","center");
 		}
 		else if(path === "/pcb/sch/"){
@@ -109,15 +105,7 @@ var width,height;
 		    _set_pos("section4","center");
 		}
 	    },
-	    set_pos:_set_pos,
-	    switch_pos:function(inid,indirecion,outid,outdirecion){
-		var inobject = $("#"+inid),
-		    outobject = $("#" +outid);
-		_set_pos(inid,indirecion);
-		_set_pos(outid,outdirecion);
-		
-
-	    }
+	    set_pos:_set_pos
 	};
     }();
 })(this);// actually "this" means window
@@ -145,10 +133,12 @@ $(document).ready(function() {
     }, 500);
     //u.Controller.show("/");
 
-    u.Controller.set_pos("sch-editor","center");
-    u.Controller.set_pos("symbol-lib", "west");
-    u.Controller.set_pos("symbol-editor","east");
-    
+    // u.Controller.set_pos("sch-editor","center");
+    // u.Controller.set_pos("symbol-lib", "west");
+    // u.Controller.set_pos("symbol-editor","east");
+
+    console.log("hello");
+
 
 });
 
