@@ -131,6 +131,7 @@ $(document).ready(function() {
     setTimeout(function(){
 	$('#pages').addClass('enableTransition');
     }, 500);
+
     //u.Controller.show("/");
 
     // u.Controller.set_pos("sch-editor","center");
