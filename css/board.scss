@@ -124,9 +124,13 @@ a , *{
     padding-bottom:0;
 
 }
-.container{
+.sym-container{
     @include extensive-block;
-    background:url(/static/images/sch/notebook_texture2459.jpg);
+
+}
+.sch-container{
+    @include extensive-block;
+    background:url(/static/images/sch/paper_texture_dirt.jpg);
     transition-property:background;
     @include transition-duration((1s,0s));
     @include transition-timing-function(ease-in);
@@ -140,21 +144,36 @@ a , *{
 }
 
 .ctl-nav{
-    font-size:1em;
+
     position:absolute;
     top:$spacing;
     right:$spacing;
     display:block;
-
+    
+    ul{
+	li{
+	    a{
+		font-size:1em;
+		color:black;
+	    }
+	}
+    }
 }
 
-.ctl-title{
+.ctl-h-toolbar{
     position:absolute;
     top:$spacing;
     left:$spacing;
-    display:block;
+    font-size:20px;
+    color:black;
+    float:left;
     /* background:rgba(0,0,0,0.2); */
+}
 
-    
+.ctl-button{
+    display:inline-block;
+    a{
+	color:black;
+    }
 }
 
