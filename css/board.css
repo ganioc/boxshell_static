@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   src: url(Chewy.ttf);
   font-faily: Chewy; }
@@ -12,7 +13,7 @@ body {
   padding: 0;
   margin: 0;
   font-size: 20px;
-  font-family: Chewy, arial, serif; }
+  font-family: "microsoft yahei","瀹嬩綋",Chewy, arial, serif,KaiTi,SimHei,SimHei; }
 
 a, * {
   -webkit-tap-highlight-color: transparent;
@@ -155,7 +156,40 @@ a, * {
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  padding-bottom: 0; }
+  padding-bottom: 0;
+  background-size: cover;
+  background-image: url(/static/images/sch/bg-faint-pc.jpg); }
+  .sym-container .board {
+    display: block;
+    width: 1020px;
+    height: 710px;
+    position: relative;
+    top: 50px;
+    margin: auto; }
+    .sym-container .board svg {
+      width: 700px;
+      height: 700px;
+      display: inline-block; }
+      .sym-container .board svg .node {
+        cursor: pointer; }
+      .sym-container .board svg .node:hover {
+        stroke: #000;
+        stroke-width: 1.5px; }
+      .sym-container .board svg .node--leaf {
+        fill: white; }
+      .sym-container .board svg .label {
+        font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-anchor: middle;
+        text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff; }
+      .sym-container .board svg .label,
+      .sym-container .board svg .node--root,
+      .sym-container .board svg .node--leaf {
+        pointer-events: none; }
+    .sym-container .board .stack {
+      width: 300px;
+      height: 700px;
+      display: inline-block;
+      border: 2px solid; }
 
 .sch-container {
   width: 100%;
@@ -166,7 +200,8 @@ a, * {
   padding-right: 0;
   padding-top: 0;
   padding-bottom: 0;
-  background: url(/static/images/sch/paper_texture_dirt.jpg);
+  background-size: cover;
+  background-image: url(/static/images/sch/bg-white-paper.jpg);
   transition-property: background;
   -moz-transition-duration: 1s, 0s;
   -o-transition-duration: 1s, 0s;
@@ -181,14 +216,19 @@ a, * {
     height: 100%;
     display: block; }
 
-.ctl-nav {
+.ctl-nav-left {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: block;
+  float: left; }
+
+.ctl-nav-right {
   position: absolute;
   top: 10px;
   right: 10px;
-  display: block; }
-  .ctl-nav ul li a {
-    font-size: 1em;
-    color: black; }
+  display: block;
+  float: right; }
 
 .ctl-h-toolbar {
   position: absolute;
@@ -199,9 +239,37 @@ a, * {
   float: left;
   /* background:rgba(0,0,0,0.2); */ }
 
+.ctl-h-toolbar-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: black;
+  float: right;
+  /* background:rgba(0,0,0,0.2); */ }
+
 .ctl-button {
   display: inline-block; }
   .ctl-button a {
     color: black; }
+
+.ctl-caption {
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.75);
+  color: #0080ff;
+  font-size: 20px;
+  display: inline-block; }
+
+.ctl-username {
+  display: inline-block;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.5); }
+  .ctl-username a {
+    margin-left: 10px;
+    margin-right: 10px; }
+
+.ctl-search {
+  font-size: 15px;
+  display: inline-block;
+  width: 100px; }
 
 /*# sourceMappingURL=board.css.map */
