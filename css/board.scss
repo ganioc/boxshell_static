@@ -207,24 +207,11 @@ $stack_width:300px;
     display:block;
     float:right;
 }
-
-.ctl-h-toolbar{
-    position:absolute;
-    top:$spacing;
-    left:$spacing;
-    font-size:20px;
-    color:black;
-    float:left;
-    /* background:rgba(0,0,0,0.2); */
+.ctl-nav-block{
+    display:inline-block;
 }
-.ctl-h-toolbar-right{
-    position:absolute;
-    top:$spacing;
-    right:$spacing;
-    font-size:20px;
-    color:black;
-    float:right;
-    /* background:rgba(0,0,0,0.2); */
+.ctl-dummy-block{
+    width:10px;
 }
 .ctl-button{
     display:inline-block;
@@ -236,7 +223,6 @@ $stack_width:300px;
     text-shadow:0px 0px 3px rgba(0,0,0,0.75);
     color:#0080ff;
     font-size:20px;
-    display:inline-block;
 }
 
 .ctl-username{
@@ -255,3 +241,18 @@ $stack_width:300px;
     display:inline-block;
 
 }
+
+.sym-search-txt{
+    width:20em;
+    @include border-radius(4px, 4px);
+    background:rgba(245,245,245,0.4);
+    padding-left:10px;
+    color:navyblue;
+}
+
+// to change library css
+.breadcrumb{
+    margin-bottom:0;
+    background:rgba(245,245, 245, 0.4);
+}
+

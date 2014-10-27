@@ -315,6 +315,7 @@ $(document).ready(function() {
 
     //init the sections
     u.Controller.init("pages");
+    //$("#sym-search-txt").typeahead();
 
     u.Ctl.set_btn("sch-cmd-setting",{
 	click:function(){

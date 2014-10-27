@@ -14,14 +14,22 @@
 
 <!-- </ul> -->
 <!-- </div> -->
-    <div class="ctl-h-toolbar" id="sch-toolbar-h">
-	<div class="ctl-button" id="sch-cmd-setting">
-	    <a href="javascript:void(0)" id="cmd-setting"><span class="glyphicon glyphicon-cog"></span></a>
-	</div>
-	<div class="ctl-button" id="sch-cmd-symbol">
-	    <a href="javascript:void(0)" id="cmd-setting"><span class="glyphicon glyphicon glyphicon-log-in"></span></a>
-	</div>
+<div class="ctl-nav-left" id="sch-toolbar-h">
+    <div class="ctl-button" id="sch-cmd-setting">
+	<a href="javascript:void(0)" id="cmd-setting"><span class="glyphicon glyphicon-cog"></span></a>
     </div>
-
+    <div class="ctl-button" id="sch-cmd-symbol">
+	<a href="javascript:void(0)" id="cmd-setting"><span class="glyphicon glyphicon glyphicon-log-in"></span></a>
+    </div>
+</div>
+<div class="ctl-nav-right">
+    <div class="clt-nav-block">
+	<ol class="breadcrumb">
+	    <li>
+		{% ifequal language "en-US" %}Sch{% else %}原理图{% endifequal %}
+	    </li>
+	</ol>
+    </div>
+</div>
 
 </div>

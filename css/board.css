@@ -230,23 +230,11 @@ a, * {
   display: block;
   float: right; }
 
-.ctl-h-toolbar {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 20px;
-  color: black;
-  float: left;
-  /* background:rgba(0,0,0,0.2); */ }
+.ctl-nav-block {
+  display: inline-block; }
 
-.ctl-h-toolbar-right {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  color: black;
-  float: right;
-  /* background:rgba(0,0,0,0.2); */ }
+.ctl-dummy-block {
+  width: 10px; }
 
 .ctl-button {
   display: inline-block; }
@@ -256,8 +244,7 @@ a, * {
 .ctl-caption {
   text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.75);
   color: #0080ff;
-  font-size: 20px;
-  display: inline-block; }
+  font-size: 20px; }
 
 .ctl-username {
   display: inline-block;
@@ -269,7 +256,19 @@ a, * {
 
 .ctl-search {
   font-size: 15px;
-  display: inline-block;
-  width: 100px; }
+  display: inline-block; }
+
+.sym-search-txt {
+  width: 20em;
+  -moz-border-radius: 4px / 4px;
+  -webkit-border-radius: 4px 4px;
+  border-radius: 4px / 4px;
+  background: rgba(245, 245, 245, 0.4);
+  padding-left: 10px;
+  color: navyblue; }
+
+.breadcrumb {
+  margin-bottom: 0;
+  background: rgba(245, 245, 245, 0.4); }
 
 /*# sourceMappingURL=board.css.map */
