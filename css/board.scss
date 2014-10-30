@@ -8,6 +8,7 @@ $page_switch_function:ease-in;
 $spacing:10px;
 $margin:5px;
 
+
 @font-face{
     src:url(Chewy.ttf);
     font-faily: Chewy;}
@@ -125,8 +126,8 @@ a , *{
     padding-bottom:0;
     background-size:cover;
 }
-$svg_width:700px;
-$svg_height:700px;
+$svg_width:500px;
+$svg_height:500px;
 $stack_width:300px;
 .sym-container{
     @include extensive-block;
@@ -138,9 +139,9 @@ $stack_width:300px;
 	height:$svg_height +10;
 	//border:2px solid;
 	position:relative;
-	top:5* $spacing;
+	top:7* $spacing;
 	margin:auto;
-	svg{
+	> svg{
 	    width:$svg_width;
 	    height:$svg_height;
 	    //border:2px solid;
@@ -159,6 +160,7 @@ $stack_width:300px;
 		font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
 		text-anchor: middle;
 		text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+		//font-size:2em;
 	    }
 	    .label{
 		pointer-events: none;
@@ -170,13 +172,19 @@ $stack_width:300px;
 	}
 	.stack{
 	    width:$stack_width;
-	    height:$svg_height;
+	    height:$svg_height - 2;
 	    display:inline-block;
-	    border:2px solid;
+	    border:1px solid;
+	    > svg{
+		border:1px solid;
+		background:green;
+	    }
 	}
     }
 
 }
+
+
 .sch-container{
     @include extensive-block;
     
@@ -192,6 +200,7 @@ $stack_width:300px;
 	display:block;
     }
 }
+
 
 .ctl-nav-left{
 

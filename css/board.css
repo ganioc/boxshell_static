@@ -161,33 +161,36 @@ a, * {
   background-image: url(/static/images/sch/bg-faint-pc.jpg); }
   .sym-container .board {
     display: block;
-    width: 1020px;
-    height: 710px;
+    width: 820px;
+    height: 510px;
     position: relative;
-    top: 50px;
+    top: 70px;
     margin: auto; }
-    .sym-container .board svg {
-      width: 700px;
-      height: 700px;
+    .sym-container .board > svg {
+      width: 500px;
+      height: 500px;
       display: inline-block; }
-      .sym-container .board svg .node {
+      .sym-container .board > svg .node {
         cursor: pointer; }
-      .sym-container .board svg .node:hover {
+      .sym-container .board > svg .node:hover {
         stroke: #000;
         stroke-width: 1.5px; }
-      .sym-container .board svg .node--leaf {
+      .sym-container .board > svg .node--leaf {
         fill: white; }
-      .sym-container .board svg .label {
+      .sym-container .board > svg .label {
         font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
         text-anchor: middle;
         text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff; }
-      .sym-container .board svg .label {
+      .sym-container .board > svg .label {
         pointer-events: none; }
     .sym-container .board .stack {
       width: 300px;
-      height: 700px;
+      height: 498px;
       display: inline-block;
-      border: 2px solid; }
+      border: 1px solid; }
+      .sym-container .board .stack > svg {
+        border: 1px solid;
+        background: green; }
 
 .sch-container {
   width: 100%;

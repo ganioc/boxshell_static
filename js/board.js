@@ -19,6 +19,7 @@
     u.version="1";
     u.readname = "u library";
 
+
     
     // Controller is the object for manipulating page switching
     u.Controller = function(){
@@ -107,7 +108,8 @@
 
     // Svg handle d3.js data display
     u.Svg = function(){
-	var instance;
+	var instance,
+	    magazine;
 
 	var _init = function(opt){
 	    var svg_DOM,
@@ -168,16 +170,25 @@
 			});
 		transition.selectAll("text")
 		    .filter(function(d){ 
-			return d.parent === focus || this.style.display === "inline";
+			return d.parent === focus || this.style.display === "inline" || d === focus;//change by spike
 		    })
 		    .style("fill-opacity",function(d){
-			return d.parent === focus? 1: 0;
+			//return d.parent === focus? 1: 0;
+			// change by spike
+			if( d.parent === focus)
+			    return 1;
+			else if(d === focus)
+			    return 1;
+			else
+			    return 0;
 		    })
 		    .each("start", function(d){
-			if(d.parent === focus) this.style.display = "inline";
+			if(d.parent === focus || d === focus) this.style.display = "inline";
 		    })
 		    .each("end", function(d){
-			if(d.parent !== focus) this.style.display = "none";
+			if(d.parent !== focus && d !== focus) this.style.display = "none";
+			// so I can see the leaf node name at last
+			    
 		    });
 	    };
 
@@ -211,6 +222,10 @@
 			//return color(d.depth);
 		    })
 		    .style("stroke","black")
+		    .style("fill-opacity",function(d){
+			//return d.parent === focus? 1: 0;
+			return 0.6;
+		    })
 		    .on("click",function(d){
 
 			if(focus !== d)
@@ -218,16 +233,18 @@
 			d3.event.stopPropagation();
 		    })
 		    .on("mouseover", function(d){
-			var nodeSelection = d3.select(this).style({opacity:"0.5"});
+			var nodeSelection = d3.select(this).style({opacity:"1"});
 			//nodeSelection.select("text").style({opacity:"1.0"});
+			d3.event.stopPropagation();
 
 		    })
 		    .on("mouseout", function(d){
-			var nodeSelection = d3.select(this).style({opacity:"1"});
+			var nodeSelection = d3.select(this).style({opacity:"0.6"});
+			d3.event.stopPropagation();
 		    })
 		    .on("dblclick", function(d){
 			console.log("in svg dbl click");
-			console.log(d);
+			console.log(d.name);
 			d3.event.stopPropagation();
 		    });
 
@@ -273,6 +290,9 @@
 			_zoom(d);
 		    }
 		
+		},
+		get_DOM :function(){
+		    return svg_DOM;
 		}
 	    };
 	};
@@ -296,7 +316,11 @@
 	    get_instance:function(){
 		console.log("try to retrieve isntance");
 		return instance;
-	    }
+	    },
+	    add_magazine:function(opt){
+		magazine = new u.Util.Magazine(opt);
+	    },
+	    get_magazine:function(){return magazine;}
 	};
     }();
 
@@ -311,6 +335,35 @@
 	var _is_string = function(ob){
 	    return typeof(ob) === "string";
 	};
+
+	function _Magazine(opt){
+	    var NAME = "Magazine";
+	    var NUM = 4;
+
+	    console.log(opt.dom_name);
+
+	    this.x = opt.x||0;
+	    this.y = opt.y||0;
+	    this.width = opt.width || 50;
+	    this.height = this.width * NUM;
+	    this.dom_name = opt.dom_name;
+	}
+	_Magazine.prototype.init = function(){
+	    console.log("Magazine init");
+	    var temp = $("<svg></svg>");
+	    temp.attr("width",this.width)
+		.attr("height",this.height);
+
+	    console.log(this.dom_name);
+	    console.log(this.width);
+	    
+	    $("#" + this.dom_name).append(temp);
+	    console.log("Magazine init over");
+	    
+	};
+	_Magazine.prototype.get_name = function(){ return this.NAME;
+						 };
+
 	return{
 	    adjacent_keys:function(ob){
 		// if ob is an object
@@ -320,7 +373,8 @@
 	    },
 	    is_object:_is_object,
 	    is_array:_is_array,
-	    is_string:_is_string
+	    is_string:_is_string,
+	    Magazine:_Magazine
 	};
     }();
     // typeahead for search input box
@@ -468,8 +522,12 @@ $(document).ready(function() {
     // init Svg display
     u.Svg.init({
 	name:"sym-svg",
-	width:700,
-	height:700}, data_root);
+	width:500,
+	height:500}, data_root);
+
+    u.Svg.add_magazine({"dom_name":"sym-magazine"});
+    u.Svg.get_magazine().init();
+
     // initialize typeahead content
     u.Symfind.init("sym-search-txt",u.Svg.get_instance().get_orig_data());
     
