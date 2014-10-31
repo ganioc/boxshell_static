@@ -344,25 +344,55 @@
 
 	    this.x = opt.x||0;
 	    this.y = opt.y||0;
-	    this.width = opt.width || 50;
-	    this.height = this.width * NUM;
+	    this.width = 0;
+	    this.height = 0;
+	    this.bullets = [];
+	    this.bullet_width = 40;
+	    this.bullets_pos = {x:0,y:0};
+	    this.bullets_margin = 10;
+	    //this.width = opt.width || 50;
+	    //this.height = this.width * NUM;
 	    this.dom_name = opt.dom_name;
 	}
 	_Magazine.prototype.init = function(){
 	    console.log("Magazine init");
-	    var temp = $("<svg></svg>");
-	    temp.attr("width",this.width)
-		.attr("height",this.height);
 
 	    console.log(this.dom_name);
-	    console.log(this.width);
 	    
-	    $("#" + this.dom_name).append(temp);
+	    //var temp='<circle cx="0" cy="00" r="10" stroke="black" fill="#339933" /> <line x1="5" y1="5" x2="135" y2="85" style="stroke: black;" />';
+	    var mySvg = $("#" + this.dom_name);
+	    this.bullets_pos.x = mySvg.css("width") - this.bullet_width/2;
+	    this.bullets_pos.y = this.bullets_margin;
+	    _.map(_.range(this.NUM -1), function(d){
+		
+	    });
+	    
+	    // $(mySvg).append("<svg><circle /></svg>");
+	    // $(mySvg).find("circle").unwrap();
+	    // $(mySvg).find("circle").attr("cx","160");
+	    // $(mySvg).find("circle").attr("cy","70");
+	    // $(mySvg).find("circle").attr("r","30");
+	    // $(mySvg).find("circle").attr("class","class1" );
+	    //$("#" + this.dom_name).append(temp);
+
+	    
 	    console.log("Magazine init over");
 	    
 	};
 	_Magazine.prototype.get_name = function(){ return this.NAME;
-						 };
+	_Magazine.prototype.create_bullet = function(num){
+	    
+
+	};
+	_Magazine.prototype.compute_bullet_pos = function(num){
+	    return {x:this.bullets_pos.x + this.bullet_width/2,
+		    y:this.bullets_margin + this.bullet_width/2 + num * (this.bullet_width + this.bullets_margin )};
+	};
+	_Magazine.prototype.add_bullet = function(){
+	    var mySvg = $("#" + this.dom_name);
+	    this.bullets.push();
+
+	};
 
 	return{
 	    adjacent_keys:function(ob){
@@ -525,7 +555,7 @@ $(document).ready(function() {
 	width:500,
 	height:500}, data_root);
 
-    u.Svg.add_magazine({"dom_name":"sym-magazine"});
+    u.Svg.add_magazine({"dom_name":"sym-stack-svg"});
     u.Svg.get_magazine().init();
 
     // initialize typeahead content
