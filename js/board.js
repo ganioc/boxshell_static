@@ -363,8 +363,21 @@
 	    var mySvg = $("#" + this.dom_name);
 	    this.bullets_pos.x = mySvg.css("width") - this.bullet_width/2;
 	    this.bullets_pos.y = this.bullets_margin;
-	    _.map(_.range(this.NUM -1), function(d){
-		
+	    // _.map(_.range(this.NUM), function(d){
+	    // 	var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+	    // 	var $circle = $(circle).attr({cx:60,cy:50,r:30  });
+
+	    // 	mySvg.append($circle);
+	    // });
+	    
+	    var circle;
+	    var $circle;
+	    var left_pos = this.x;
+	    
+	    _.map(_.range(2), function(d){
+		circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+		$circle = $(circle).attr({cx:left_pos,cy:20 + d*40,r:40});
+		mySvg.append($circle);
 	    });
 	    
 	    // $(mySvg).append("<svg><circle /></svg>");
@@ -379,7 +392,7 @@
 	    console.log("Magazine init over");
 	    
 	};
-	_Magazine.prototype.get_name = function(){ return this.NAME;
+	_Magazine.prototype.get_name = function(){ return this.NAME; };
 	_Magazine.prototype.create_bullet = function(num){
 	    
 
@@ -407,6 +420,7 @@
 	    Magazine:_Magazine
 	};
     }();
+    
     // typeahead for search input box
     u.Symfind = function(){
 	var dataset = [],
@@ -479,7 +493,9 @@
 	    get_content:_get_content
 	};
     }();
-})(this);// actually "this" means window
+    }
+
+)(this);// actually "this" means window
 
 var data_root = {
     "name":"symbol",
