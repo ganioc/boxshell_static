@@ -197,7 +197,14 @@ $stack_width:300px;
     height:$svg_height;
     display:inline-block;  
     //background:purple;
-    
+    circle{
+	fill-opacity:0.5;
+	//@include background-image(linear-gradient(to bottom right, white, #dddddd));
+	-webkit-transition-property: -webkit-transform, opacity;
+	-moz-transition-property: -moz-transform, opacity;
+	-o-transition-property: -o-transform, opacity;
+	transition-property: transform, opacity;
+    }
 }
 
 

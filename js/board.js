@@ -335,10 +335,10 @@
 	var _is_string = function(ob){
 	    return typeof(ob) === "string";
 	};
-
+	
 	function _Magazine(opt){
-	    var NAME = "Magazine";
-	    var NUM = 4;
+	    //var NAME = "Magazine";
+	    //var NUM = 4;
 
 	    console.log(opt.dom_name);
 
@@ -354,57 +354,46 @@
 	    //this.height = this.width * NUM;
 	    this.dom_name = opt.dom_name;
 	}
+	_Magazine.prototype.NAME = "Magazine";
+	_Magazine.prototype.NUM = 4;
 	_Magazine.prototype.init = function(){
-	    console.log("Magazine init");
+	    console.log("Magazine init:" + this.NAME);
 
 	    console.log(this.dom_name);
 	    
 	    //var temp='<circle cx="0" cy="00" r="10" stroke="black" fill="#339933" /> <line x1="5" y1="5" x2="135" y2="85" style="stroke: black;" />';
 	    var mySvg = $("#" + this.dom_name);
-	    this.bullets_pos.x = mySvg.css("width") - this.bullet_width/2;
-	    this.bullets_pos.y = this.bullets_margin;
-	    // _.map(_.range(this.NUM), function(d){
-	    // 	var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-	    // 	var $circle = $(circle).attr({cx:60,cy:50,r:30  });
-
-	    // 	mySvg.append($circle);
-	    // });
+	    console.log(mySvg.css("width").slice(0,-2));
+	    console.log("bullet_width:" + this.bullet_width);
+	    this.bullets_pos.x = mySvg.css("width").slice(0,-2)/2;
+	    console.log(this.bullets_pos);
+	    this.bullets_pos.y = this.bullets_margin + this.bullet_width/2;
 	    
 	    var circle;
 	    var $circle;
-	    var left_pos = this.x;
 	    
-	    _.map(_.range(2), function(d){
-		circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-		$circle = $(circle).attr({cx:left_pos,cy:20 + d*40,r:40});
-		mySvg.append($circle);
-	    });
-	    
-	    // $(mySvg).append("<svg><circle /></svg>");
-	    // $(mySvg).find("circle").unwrap();
-	    // $(mySvg).find("circle").attr("cx","160");
-	    // $(mySvg).find("circle").attr("cy","70");
-	    // $(mySvg).find("circle").attr("r","30");
-	    // $(mySvg).find("circle").attr("class","class1" );
-	    //$("#" + this.dom_name).append(temp);
-
+	    _.map(_.range(this.NUM), function(d){
+		mySvg.append(this.create_bullet(this,d));
+	    }, this);
 	    
 	    console.log("Magazine init over");
-	    
 	};
 	_Magazine.prototype.get_name = function(){ return this.NAME; };
-	_Magazine.prototype.create_bullet = function(num){
-	    
-
+	_Magazine.prototype.create_bullet = function(that,num){
+	    var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+	    var pos = this.compute_bullet_pos(that,num);
+	    var $circle = $(circle).attr({
+		cx:pos.x,
+		cy:pos.y,
+		r:that.bullet_width/2
+	    });
+	    return $circle;
 	};
-	_Magazine.prototype.compute_bullet_pos = function(num){
-	    return {x:this.bullets_pos.x + this.bullet_width/2,
-		    y:this.bullets_margin + this.bullet_width/2 + num * (this.bullet_width + this.bullets_margin )};
-	};
-	_Magazine.prototype.add_bullet = function(){
-	    var mySvg = $("#" + this.dom_name);
-	    this.bullets.push();
-
+	_Magazine.prototype.compute_bullet_pos = function(that,num){
+	    var temp = {x:0,y:0};
+	    temp.x = that.bullets_pos.x;
+	    temp.y = that.bullets_pos.y + num*(that.bullets_margin + that.bullet_width);
+	    return temp;
 	};
 
 	return{
