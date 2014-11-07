@@ -190,7 +190,7 @@ $stack_width:300px;
     }
 
 }
-
+// magazine->bullet
 #sym-stack-svg{
     border:1px solid;
     width:$stack_width;
@@ -199,11 +199,11 @@ $stack_width:300px;
     //background:purple;
     circle{
 	fill-opacity:0.5;
-	//@include background-image(linear-gradient(to bottom right, white, #dddddd));
-	-webkit-transition-property: -webkit-transform, opacity;
-	-moz-transition-property: -moz-transform, opacity;
-	-o-transition-property: -o-transform, opacity;
-	transition-property: transform, opacity;
+    }
+    circle:hover{
+	transition-property:fill;
+	transition-duration:3s;
+	fill:blue;
     }
 }
 

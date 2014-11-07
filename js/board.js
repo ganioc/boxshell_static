@@ -372,10 +372,30 @@
 	    var circle;
 	    var $circle;
 	    
+	    //mySvg.append(this.create_definition(this));
+
 	    _.map(_.range(this.NUM), function(d){
 		mySvg.append(this.create_bullet(this,d));
 	    }, this);
-	    
+
+	    var circle_hover_in_cb = function(that){
+		return function(e){
+		    console.log("hover in:" + $(this).attr("cy"));
+		    //$(this).attr("r",25);
+		};
+	    };
+	    var circle_hover_out_cb = function(that){
+		return function(e){
+		    console.log("hover out:" + $(this).attr("cy"));
+		    //$(this).attr("r",20);
+		    
+		};
+	    };	    
+	    mySvg.children('circle').hover(
+		circle_hover_in_cb(this),
+		circle_hover_out_cb(this)
+	    );
+
 	    console.log("Magazine init over");
 	};
 	_Magazine.prototype.get_name = function(){ return this.NAME; };
@@ -385,10 +405,26 @@
 	    var $circle = $(circle).attr({
 		cx:pos.x,
 		cy:pos.y,
-		r:that.bullet_width/2
+		r:that.bullet_width/2,
+		fill:"url(#rg-circle)"
 	    });
 	    return $circle;
 	};
+	// _Magazine.prototype.create_definition = function(that){
+	//     var defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+	//     var $def = $(defs);
+
+	//     var gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+	//     var $gradient = $(gradient).attr({
+	// 	id:"g-circle"
+	//     });
+
+	//     $gradient.append('<stop offset="0" stop-color="white"/>  <stop offset="1" stop-color="black"/>');
+
+	//     $def.append($gradient);
+	//     return $def;
+
+	// };
 	_Magazine.prototype.compute_bullet_pos = function(that,num){
 	    var temp = {x:0,y:0};
 	    temp.x = that.bullets_pos.x;
