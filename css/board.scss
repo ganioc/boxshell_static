@@ -24,7 +24,7 @@ body{
   padding:0;
   margin:0;
   font-size:20px;
-  font-family:"microsoft yahei","宋体",Chewy, arial, serif,KaiTi,SimHei,SimHei;}
+  font-family:"microsoft yahei",Chewy, arial, serif,KaiTi,SimHei,SimHei;}
 
 a , *{
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -170,29 +170,12 @@ $stack_width:300px;
 		//pointer-events: none;
 	    //}
 	}
-	
-	/* .stack{ */
-	/*     width:$stack_width - 10; */
-	/*     height:$svg_height - 10; */
-	/*     display:inline-block; */
-	/*     border:1px solid; */
-	/*     background:yellow; */
-	/*     position:absolute; */
-	/*     > svg{ */
-	/* 	border:1px solid; */
-	/* 	background:green; */
-	/* 	display:block; */
-	/* 	position:relative; */
-	/* 	top:10px; */
-	/* 	left:10px; */
-	/*     } */
-    //}
     }
 
 }
 // magazine->bullet
 #sym-stack-svg{
-    border:1px solid;
+    //border:1px solid;
     width:$stack_width;
     height:$svg_height;
     display:inline-block;  
@@ -201,9 +184,7 @@ $stack_width:300px;
 	fill-opacity:0.5;
     }
     circle:hover{
-	transition-property:fill;
-	transition-duration:3s;
-	fill:blue;
+
     }
 }
 

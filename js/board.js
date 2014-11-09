@@ -381,16 +381,36 @@
 	    var circle_hover_in_cb = function(that){
 		return function(e){
 		    console.log("hover in:" + $(this).attr("cy"));
+
 		    //$(this).attr("r",25);
+		    var anim = u.Util.create_svg("animate");
+		    anim.setAttribute("attributeName","r");
+		    anim.setAttribute("attributeType","XML");
+		    anim.setAttribute("begin","0s");
+		    anim.setAttribute("dur","2s");
+		    anim.setAttribute("from","20");
+		    anim.setAttribute("to","30");
+		    anim.setAttribute("fill","freeze");
+		    $(this).empty().append($(anim));
 		};
 	    };
 	    var circle_hover_out_cb = function(that){
 		return function(e){
 		    console.log("hover out:" + $(this).attr("cy"));
 		    //$(this).attr("r",20);
-		    
+		    //$(this).attr("fill","url(#rg-circle)");
+		    // var anim = u.Util.create_svg("animate");
+		    // anim.setAttribute("attributeName","r");
+		    // anim.setAttribute("attributeType","XML");
+		    // anim.setAttribute("from","25");
+		    // anim.setAttribute("to","20");
+		    // anim.setAttribute("begin","0s");
+		    // anim.setAttribute("dur","6s");
+		    // anim.setAttribute("fill","freeze");
+		    // $(this).empty().append($(anim));
 		};
-	    };	    
+	    };
+	    // feedback function for circle hover
 	    mySvg.children('circle').hover(
 		circle_hover_in_cb(this),
 		circle_hover_out_cb(this)
@@ -400,7 +420,7 @@
 	};
 	_Magazine.prototype.get_name = function(){ return this.NAME; };
 	_Magazine.prototype.create_bullet = function(that,num){
-	    var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+	    var circle = u.Util.create_svg("circle");
 	    var pos = this.compute_bullet_pos(that,num);
 	    var $circle = $(circle).attr({
 		cx:pos.x,
@@ -442,7 +462,11 @@
 	    is_object:_is_object,
 	    is_array:_is_array,
 	    is_string:_is_string,
-	    Magazine:_Magazine
+	    Magazine:_Magazine,
+	    create_svg:function(tag){
+		return document.createElementNS('http://www.w3.org/2000/svg', tag);
+
+	    }
 	};
     }();
     
