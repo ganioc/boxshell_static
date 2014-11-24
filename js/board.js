@@ -168,7 +168,7 @@
 				_zoomTo( i(t) );
 			    };
 			});
-		transition.selectAll("text")
+		transition.selectAll(svg_DOM + " text")
 		    .filter(function(d){ 
 			return d.parent === focus || this.style.display === "inline" || d === focus;//change by spike
 		    })
@@ -245,6 +245,10 @@
 		    .on("dblclick", function(d){
 			console.log("in svg dbl click");
 			console.log(d.name);
+			//add a device to the magazine, if not has a child
+			if(!d.children){
+			    u.Svg.get_magazine().add_bullet({name:d.name});
+			}
 			d3.event.stopPropagation();
 		    });
 
@@ -337,98 +341,139 @@
 	};
 	
 	function _Magazine(opt){
-	    //var NAME = "Magazine";
-	    //var NUM = 4;
-
 	    console.log(opt.dom_name);
 
 	    this.x = opt.x||0;
 	    this.y = opt.y||0;
 	    this.width = 0;
 	    this.height = 0;
-	    this.bullets = [];
+
 	    this.bullet_width = 40;
-	    this.bullets_pos = {x:0,y:0};
 	    this.bullets_margin = 10;
-	    //this.width = opt.width || 50;
-	    //this.height = this.width * NUM;
+	    this.bullets_pos = {x:0,y:0};
+	    this.bullet_collector_pos = {};
+	    //store all possible positions
+	    this.positions = [];
+	    this.bullets = [];// Raphael circles
+	    this.texts = []; // Raphael texts
 	    this.dom_name = opt.dom_name;
+
+	    this.paper = {};
+	    this.devices = [];// device info
+	    
 	}
 	_Magazine.prototype.NAME = "Magazine";
-	_Magazine.prototype.NUM = 4;
+	_Magazine.prototype.NUM = 10;
+
+	// first position is the starting place
+	_Magazine.prototype.init_positions = function(that){
+	    that.positions.push({x:that.bullet_width/2 + 5,
+				 y:that.height/2});
+	    
+	    that.bullets_pos = {x:that.width/2,
+			       y:that.bullets_margin + that.bullet_width/2};
+	    for(var i =0 ; i< that.NUM; i++){
+		//		this.add_position(this.compute_bullet_pos
+		//that.positions.push(that.compute_bullet_pos(that,i));
+		that.positions.push(that.compute_bullet_pos(that,that.bullets_pos,i));
+	    }
+
+	};
+	_Magazine.prototype.init_bullets = function(){
+	    var pos;
+	    var obj,txt;
+	    
+	    for(var i=0; i< this.NUM + 1; i++){
+		pos = this.positions[i];
+		obj = this.paper.circle(pos.x,pos.y,this.bullet_width/2);
+		obj.attr({fill:'r(0.2,0.4)#fff-#f00',
+			  stroke:'pink',
+			  'fill-opacity':0.4
+			  //display:'none'
+			 });
+		obj.hide();
+		this.bullets.push(obj);
+
+		txt = this.paper.text(pos.x + this.bullet_width/2, pos.y,"");
+		txt.attr({'font-size':15,
+			  'text-anchor':'start',
+			  'fill':'black'});
+
+	
+		txt.hide();
+		this.texts.push(txt);
+	    }
+	};
+	_Magazine.prototype.reset_bullets = function(){
+	    for(var i=0; i< this.NUM + 1; i++){
+		var pos = this.positions[i];
+		this.bullets[i].attr({cx:pos.x, cy:pos.y});
+	    }
+	};
 	_Magazine.prototype.init = function(){
 	    console.log("Magazine init:" + this.NAME);
 
 	    console.log(this.dom_name);
-	    
-	    //var temp='<circle cx="0" cy="00" r="10" stroke="black" fill="#339933" /> <line x1="5" y1="5" x2="135" y2="85" style="stroke: black;" />';
 	    var mySvg = $("#" + this.dom_name);
-	    console.log(mySvg.css("width").slice(0,-2));
-	    console.log("bullet_width:" + this.bullet_width);
-	    this.bullets_pos.x = mySvg.css("width").slice(0,-2)/2;
-	    console.log(this.bullets_pos);
-	    this.bullets_pos.y = this.bullets_margin + this.bullet_width/2;
+
+	    this.width = mySvg.css("width").slice(0,-2);
+	    this.height = mySvg.css("height").slice(0,-2);
+	    this.paper = Raphael('sym-stack-svg', this.width, this.height);
+
+	    this.init_positions(this);
+	    this.init_bullets();
 	    
-	    var circle;
-	    var $circle;
-	    
-	    //mySvg.append(this.create_definition(this));
-
-	    _.map(_.range(this.NUM), function(d){
-		mySvg.append(this.create_bullet(this,d));
-	    }, this);
-
-	    var circle_hover_in_cb = function(that){
-		return function(e){
-		    console.log("hover in:" + $(this).attr("cy"));
-
-		    //$(this).attr("r",25);
-		    var anim = u.Util.create_svg("animate");
-		    anim.setAttribute("attributeName","r");
-		    anim.setAttribute("attributeType","XML");
-		    anim.setAttribute("begin","0s");
-		    anim.setAttribute("dur","2s");
-		    anim.setAttribute("from","20");
-		    anim.setAttribute("to","30");
-		    anim.setAttribute("fill","freeze");
-		    $(this).empty().append($(anim));
-		};
-	    };
-	    var circle_hover_out_cb = function(that){
-		return function(e){
-		    console.log("hover out:" + $(this).attr("cy"));
-		    //$(this).attr("r",20);
-		    //$(this).attr("fill","url(#rg-circle)");
-		    // var anim = u.Util.create_svg("animate");
-		    // anim.setAttribute("attributeName","r");
-		    // anim.setAttribute("attributeType","XML");
-		    // anim.setAttribute("from","25");
-		    // anim.setAttribute("to","20");
-		    // anim.setAttribute("begin","0s");
-		    // anim.setAttribute("dur","6s");
-		    // anim.setAttribute("fill","freeze");
-		    // $(this).empty().append($(anim));
-		};
-	    };
-	    // feedback function for circle hover
-	    mySvg.children('circle').hover(
-		circle_hover_in_cb(this),
-		circle_hover_out_cb(this)
-	    );
-
 	    console.log("Magazine init over");
 	};
 	_Magazine.prototype.get_name = function(){ return this.NAME; };
-	_Magazine.prototype.create_bullet = function(that,num){
-	    var circle = u.Util.create_svg("circle");
-	    var pos = this.compute_bullet_pos(that,num);
-	    var $circle = $(circle).attr({
-		cx:pos.x,
-		cy:pos.y,
-		r:that.bullet_width/2,
-		fill:"url(#rg-circle)"
-	    });
-	    return $circle;
+	// _Magazine.prototype.create_basic_bullet = function(that,pos){
+	//     var circle = u.Util.create_svg("circle");
+	//     var $circle = $(circle).attr({
+	// 	cx:pos.x,
+	// 	cy:pos.y,
+	// 	r:that.bullet_width/2,
+	// 	fill:"url(#rg-circle)"
+	//     });
+	//     return $circle;	    
+	// };
+	// _Magazine.prototype.create_bullet = function(that,num){
+	//     var pos = that.compute_bullet_pos(that,that.bullets_pos,num);
+	//     return that.create_basic_bullet(that,pos);
+	// };
+
+	_Magazine.prototype.add_bullet = function(dev){
+	    this.add_device(dev);
+	    for(var i=0;i< this.devices.length; i++){
+		var temp = this.positions[i+1];
+		
+		this.bullets[i].show().animate({cx:temp.x,cy:temp.y},500);
+		this.texts[i].attr({'text':this.devices[i].name})
+		    .show()
+		    .animate({x:temp.x + this.bullet_width/2,y:temp.y},500);
+		
+	    }
+	    var temp0 = this.positions[0];
+	    this.bullets[this.bullets.length -1].attr({cx:temp0.x,cy:temp0.y});
+	    temp0 = this.bullets.pop();
+	    temp0.hide();
+	    this.bullets.unshift(temp0);
+
+	    temp0 = this.positions[0];
+	    this.texts[this.texts.length -1].attr({x:temp0.x + this.bullet_width/2,
+						   y:temp0.y});
+	    temp0 = this.texts.pop();
+	    temp0.hide();
+	    this.texts.unshift(temp0);
+	    return 0;
+	};
+	_Magazine.prototype.add_device = function(dev){
+	    if(!dev.name){
+		throw new Error("Invalid Device Name");
+	    }
+	    this.devices.unshift(_.clone(dev));
+	    if(this.devices.length > this.NUM){
+		this.devices.pop();
+	    }
 	};
 	// _Magazine.prototype.create_definition = function(that){
 	//     var defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
@@ -445,10 +490,10 @@
 	//     return $def;
 
 	// };
-	_Magazine.prototype.compute_bullet_pos = function(that,num){
+	_Magazine.prototype.compute_bullet_pos = function(that,pos,num){
 	    var temp = {x:0,y:0};
-	    temp.x = that.bullets_pos.x;
-	    temp.y = that.bullets_pos.y + num*(that.bullets_margin + that.bullet_width);
+	    temp.x = pos.x;
+	    temp.y = pos.y + num*(that.bullets_margin + that.bullet_width);
 	    return temp;
 	};
 
@@ -459,7 +504,7 @@
 		    return Object.keys(ob);
 		}
 	    },
-	    is_object:_is_object,
+ 	    is_object:_is_object,
 	    is_array:_is_array,
 	    is_string:_is_string,
 	    Magazine:_Magazine,
@@ -620,7 +665,9 @@ $(document).ready(function() {
 	width:500,
 	height:500}, data_root);
 
-    u.Svg.add_magazine({"dom_name":"sym-stack-svg"});
+    // circle jumping effect using Raphael.js
+    u.Svg.add_magazine({"dom_name":"sym-stack-svg"
+		       });
     u.Svg.get_magazine().init();
 
     // initialize typeahead content

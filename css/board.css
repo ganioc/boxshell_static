@@ -187,8 +187,6 @@ a, * {
   width: 300px;
   height: 500px;
   display: inline-block; }
-  #sym-stack-svg circle {
-    fill-opacity: 0.5; }
 
 .sch-container {
   width: 100%;
